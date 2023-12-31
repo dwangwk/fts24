@@ -4,6 +4,7 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useAppContext } from '../contexts/AppContext';
+import { useSigner } from '@thirdweb-dev/react';
 
 const validationSchema = Yup.object().shape({
   recipientAddress: Yup.string().required('Recipient address is required'),
@@ -12,13 +13,14 @@ const validationSchema = Yup.object().shape({
 
 const MintForm = ({ onMint }) => {
   const { state, dispatch } = useAppContext();
-
+  const signer = useSigner();
+    if (!signer) {return(<div>No wallet connected</div>);}
   return (
     <Formik
       initialValues={state.mintFormData}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        onMint(values);
+        onMint({values, signer});
         resetForm();
         dispatch({ type: 'RESET_FORM_DATA' });
       }}

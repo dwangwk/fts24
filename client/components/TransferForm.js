@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useAddress } from "@thirdweb-dev/react";
 import { useAppContext } from '../contexts/AppContext';
 
 const validationSchema = Yup.object().shape({
@@ -12,6 +13,8 @@ const validationSchema = Yup.object().shape({
 
 const TransferForm = ({transferTokens})=> {
     const {state, dispatch} = useAppContext();
+    const connectedAddress = useAddress();
+    if (!connectedAddress) {return(<div>No wallet connected</div>);}
     return (
         <Formik 
             initialValues={state.transferFormData}

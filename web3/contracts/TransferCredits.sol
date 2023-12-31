@@ -6,9 +6,10 @@ import {OwnerIsCreator} from "@chainlink/contracts-ccip/src/v0.8/shared/access/O
 import {Client} from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol";
 import {IERC20} from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-solidity/v4.8.0/contracts/token/ERC20/IERC20.sol";
 
-
-/// @title Contract that enables cross-chain transfer.
-/// @notice 
+// Destination chain: chain selector given by CCIP
+// _reciever: your account on the destination chain
+// _token : The contract address on the source chain
+// amt : The transfer token amount.
 
 contract TransferCredits is OwnerIsCreator {
 

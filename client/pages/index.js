@@ -6,7 +6,7 @@ import { useAppContext } from '../contexts/AppContext';
 
 export default function Home() {
   const { state } = useAppContext();
-
+  
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -37,7 +37,7 @@ export default function Home() {
           </div>
           )
         }
-
+        
       </div>
     </main>
   );

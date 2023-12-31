@@ -15,7 +15,7 @@ const MintForm = ({ onMint }) => {
 
   return (
     <Formik
-      initialValues={state.formData}
+      initialValues={state.mintFormData}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
         onMint(values);

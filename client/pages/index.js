@@ -30,6 +30,14 @@ export default function Home() {
           </div>
         )}
 
+        {
+          state.walletConnected && (<div className={styles.content}>
+            <p>Your wallet address: {state.walletAddress}</p>
+            <TransferForm />
+          </div>
+          )
+        }
+
       </div>
     </main>
   );

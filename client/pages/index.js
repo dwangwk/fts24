@@ -4,22 +4,14 @@ import styles from "../styles/Home.module.css";
 const Home = () => {
   return (
         <main className={styles.main}>
-          <div className={styles.container}>
-            <div className={styles.header}>
-              <div className={styles.connect}>
-              </div>
+            <div className={styles.logobox}>
+
             </div>
-            <div className={styles.content}>
-              <Link href="/web3/mint">
-                <p>Mint Carbon Credits</p>
+            <div className={styles.loginbox}>
+              <Link href="/web3/mint" style={{textDecoration: 'none', color : '#325f50'}}>
+                <p className={styles.text}>Login</p>
               </Link>
             </div>
-            <div>
-              <Link href="/web3/transfer">
-                <p>Transfer Carbon Credits</p>
-              </Link>
-            </div>
-          </div>
         </main>);
 }
 

@@ -3,6 +3,7 @@ import styles from "../../styles/Forms.module.css";
 import TransferForm from "../../components/TransferForm";
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import { AppProvider } from '../../contexts/AppContext';
+import Navbar from "../../components/navigation/Navbar";
 
 const activeChain = 'ethereum';
 const clientid = require("./keys.json")["client-id"];
@@ -11,6 +12,7 @@ const Mint = () => {
   return (
     <ThirdwebProvider activeChain={activeChain} clientId={clientid}>
     <AppProvider>
+			<Navbar></Navbar>
         <main className={styles.main}>
           <div className={styles.container}>
             <div className={styles.container_upper}>

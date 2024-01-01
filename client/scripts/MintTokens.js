@@ -5,8 +5,8 @@ const MintTokens = async (data) => {
     const to = data.values.recipientAddress;
     const amount = data.values.amount;
     const signer = data.signer;
-    const cid = require("../keys.json")["client-id"];
-    const sk = require("../keys.json")["secret-key"];
+    const cid = require("../pages/web3/keys.json")["client-id"];
+    const sk = require("../pages/web3/keys.json")["secret-key"];
     const sdk = ThirdwebSDK.fromSigner(signer, Sepolia, {clientId : cid, secretKey : sk}).catch(
         (error) => {console.log(error);}
     );

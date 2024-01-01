@@ -1,0 +1,34 @@
+.main {
+    padding: 10%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.container {
+    padding:2rem;
+    background-color: 	#fefeff;
+}
+
+.wallet_box {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.title {
+    color: 	#325f50;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    font-family: monospace;
+    font-size:large;
+    font-weight: bold;
+}
+
+.container_upper {
+    padding-bottom: 2rem;
+}
+
+.container_lower {
+    padding: 1rem;
+}

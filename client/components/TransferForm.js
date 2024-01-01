@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useAddress } from "@thirdweb-dev/react";
 import { useAppContext } from '../contexts/AppContext';
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Formik.module.css";
 
 const validationSchema = Yup.object().shape({
   recipientAddress: Yup.string().required('Recipient address is required'),
@@ -17,10 +17,6 @@ const TransferForm = ({transferTokens})=> {
     const connectedAddress = useAddress();
     if (!connectedAddress) {return(<div>No wallet connected</div>);}
     return (
-        <div>
-            <div className={styles.content}>
-                <h1>Transfer Credits</h1>
-            </div>
         <Formik 
             initialValues={state.transferFormData}
             validationSchema={validationSchema}
@@ -31,37 +27,38 @@ const TransferForm = ({transferTokens})=> {
             }}>
     
             <Form>
-                <div>
-                    <label htmlFor="recipientAddress">Recipient Address:</label>
-                    <Field type="text" id="recipientAddress" name="recipientAddress" />
+                <div className={styles.entrybox}>
+                    <label htmlFor="recipientAddress"  className={styles.label}>Recipient Address:</label>
+                    <Field type="text" id="recipientAddress" name="recipientAddress" className={styles.option}/>
                     <ErrorMessage name="recipientAddress" component="div" />    
                 </div>
 
-                <div>
-                    <label htmlFor="amount">Amount:</label>
-                    <Field type="number" id="amount" name="amount" />
+                <div className={styles.entrybox}>
+                    <label htmlFor="amount" className={styles.label}>Amount:</label>
+                    <Field type="number" id="amount" name="amount" className={styles.option} />
                     <ErrorMessage name="amount" component="div" />
                 </div>
 
-                <div>
-                    <label htmlFor="amount">Source Token:</label>
-                    <Field type="text" id="src_token" name="src_token" />
+                <div className={styles.entrybox}>
+                    <label htmlFor="amount"  className={styles.label}>Source Token:</label>
+                    <Field type="text" id="src_token" name="src_token" className={styles.option}/>
                     <ErrorMessage name="src_token" component="div" />
                 </div>
             
-                <div>
-                    <label htmlFor="amount">Destination Network:</label>
-                    <Field as="select" type="text" name="destchain" id="destchain">
-                        <option value="16015286601757825753">Ethereum Sepolia</option>
-                        <option value="13264668187771770619">BNB Chain</option>
-                        <option value="5790810961207155433">Base Goerli</option>
+                <div className={styles.entrybox}>
+                    <label htmlFor="amount"  className={styles.label}>Destination Network:</label>
+                    <Field as="select" type="text" name="destchain" id="destchain" className={styles.option}>
+                        <option value="16015286601757825753" className={styles.option}>Ethereum Sepolia</option>
+                        <option value="13264668187771770619" className={styles.option}>BNB Chain</option>
+                        <option value="5790810961207155433" className={styles.option}>Base Goerli</option>
                     </Field>
                     <ErrorMessage name="destchain" component="div" />
                 </div>
-                <button type="submit">Transfer Tokens</button>
+                <div className={styles.buttonbox}>
+                    <button type="submit" className={styles.button}>Transfer Tokens</button>
+                </div>
             </Form>
         </Formik>
-        </div>
     )
 }
 

@@ -2,9 +2,9 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import styles from "../styles/Home.module.css";
 import { useAppContext } from '../contexts/AppContext';
 import { useSigner } from '@thirdweb-dev/react';
+import styles from "../styles/Formik.module.css";
 
 const validationSchema = Yup.object().shape({
   recipientAddress: Yup.string().required('Recipient address is required'),
@@ -16,10 +16,6 @@ const MintForm = ({ onMint }) => {
   const signer = useSigner();
     if (!signer) {return(<div>No wallet connected</div>);}
   return (
-    <div>
-      <div className={styles.content}>
-            <h1>Mint Credits</h1>
-      </div>
       <Formik
         initialValues={state.mintFormData}
         validationSchema={validationSchema}
@@ -30,22 +26,22 @@ const MintForm = ({ onMint }) => {
         }}
       >
         <Form>
-          <div>
-            <label htmlFor="recipientAddress">Recipient Address:</label>
-            <Field type="text" id="recipientAddress" name="recipientAddress" />
+          <div className={styles.entrybox}>
+            <label htmlFor="recipientAddress"  className={styles.label}>Recipient Address:</label>
+            <Field type="text" id="recipientAddress" name="recipientAddress" className={styles.option}/>
             <ErrorMessage name="recipientAddress" component="div" />
           </div>
 
-          <div>
-            <label htmlFor="amount">Amount:</label>
-            <Field type="number" id="amount" name="amount" />
+          <div className={styles.entrybox}>
+            <label htmlFor="amount"  className={styles.label}>Amount:</label>
+            <Field type="number" id="amount" name="amount" className={styles.option}/>
             <ErrorMessage name="amount" component="div" />
           </div>
-
-          <button type="submit">Mint Tokens</button>
+          <div className={styles.buttonbox}>
+            <button type="submit" className={styles.button}>Mint Tokens</button>
+          </div>
         </Form>
       </Formik>
-    </div>
   );
 };
 

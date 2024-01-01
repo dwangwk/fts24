@@ -1,4 +1,5 @@
 import Navbar from "../components/navigation/Navbar";
+import styles from "../styles/globals.css";
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -6,7 +7,7 @@ import Navbar from "../components/navigation/Navbar";
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<div>
+		<div className={styles.body}>
 			<Navbar></Navbar>
 			<Component {...pageProps}/>
 		</div>);

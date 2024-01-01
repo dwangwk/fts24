@@ -1,0 +1,30 @@
+.entrybox {
+    padding : 0.2rem;
+    align-items: center;
+}
+
+.buttonbox {
+    padding-top: 0.5rem;
+}
+
+.button {
+    font-family: monospace;
+    background-color: #325f50;
+    color: #fefeff;
+}
+
+.button:hover {
+    background-color: #fefeff;
+    color: #325f50;
+}
+
+.label {
+    padding-right: 0.5rem;
+    color: 	#325f50;
+    font-family: monospace;
+}
+
+.option {
+    color: #315840;
+    font-family: monospace;
+}

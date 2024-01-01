@@ -1,6 +1,6 @@
 import { ConnectWallet } from "@thirdweb-dev/react";
 import MintForm from '../../components/MintForm';
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Forms.module.css";
 import MintTokens from "../../scripts/MintTokens"
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import { AppProvider } from '../../contexts/AppContext';
@@ -14,20 +14,24 @@ const Mint = () => {
     <AppProvider>
         <main className={styles.main}>
           <div className={styles.container}>
-            <div className={styles.header}>
-              <div className={styles.connect}>
+            <div className={styles.container_upper}>
+                <div className={styles.title}>
+                  Mint Tokens
+                </div>
+                <div className={styles.wallet_box}>
                 <ConnectWallet
-                  dropdownPosition={{
-                    side: "bottom",
-                    align: "center",
-                  }}
-                />
+                        dropdownPosition={{
+                          side: "bottom",
+                          align: "center",
+                        }} className={styles.wallet}
+                        theme="light"
+                      />
+                </div>
+              </div>
+              <div className={styles.container_lower}>
+                <MintForm onMint={(data) => MintTokens(data)} />
               </div>
             </div>
-            <div className={styles.content}>
-              <MintForm onMint={(data) => MintTokens(data)} />
-            </div>
-          </div>
         </main>
 			</AppProvider>
       </ThirdwebProvider>);

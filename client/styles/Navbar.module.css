@@ -1,5 +1,5 @@
 .bar {
-    background-color: #333;
+    background-color: #c6cbba;
     overflow: hidden;
     display: flex;
 }
@@ -7,12 +7,12 @@
 .entry {
     display: block;
     padding: 1.2rem;
-    background: #333;
+    background: #c6cbba;
     font-family: monospace;
 }
 
 .entry:hover {
     display: block;
-    background: grey;
+    background: #f6f9f3;
     font-family: monospace;
 }

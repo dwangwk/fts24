@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useAddress } from "@thirdweb-dev/react";
 import { useAppContext } from '../contexts/AppContext';
+import styles from "../styles/Home.module.css";
 
 const validationSchema = Yup.object().shape({
   recipientAddress: Yup.string().required('Recipient address is required'),
@@ -16,6 +17,10 @@ const TransferForm = ({transferTokens})=> {
     const connectedAddress = useAddress();
     if (!connectedAddress) {return(<div>No wallet connected</div>);}
     return (
+        <div>
+            <div className={styles.content}>
+                <h1>Transfer Credits</h1>
+            </div>
         <Formik 
             initialValues={state.transferFormData}
             validationSchema={validationSchema}
@@ -56,6 +61,7 @@ const TransferForm = ({transferTokens})=> {
                 <button type="submit">Transfer Tokens</button>
             </Form>
         </Formik>
+        </div>
     )
 }
 

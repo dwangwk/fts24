@@ -1,0 +1,18 @@
+.bar {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+}
+
+.entry {
+    display: block;
+    padding: 1.2rem;
+    background: #333;
+    font-family: monospace;
+}
+
+.entry:hover {
+    display: block;
+    background: grey;
+    font-family: monospace;
+}

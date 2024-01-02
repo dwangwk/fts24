@@ -10,7 +10,7 @@ const initialValues = {
     email : "",
     password : "",
     confirmpassword : ""
-}g
+}
 
 const validateSignup = (val) => {
     const error = {};
@@ -95,3 +95,5 @@ const Signup = () => {
       </Formik>
       )
 }
+
+export default Signup;

@@ -6,8 +6,28 @@
   background-color: #fefeff;
 }
 
+.imagecontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .text {
   font-family: monospace;
   font-size: large;
   font-weight: bolder;
+}
+
+.button {
+  background: none;
+  border: none;
+  padding: 1.2rem;
+  font-size: smaller;
+  font-family: monospace;
+  color: #c6cbba;
+}
+
+.button:hover{
+  color:#325f50; 
+  font-weight: bold;
 }

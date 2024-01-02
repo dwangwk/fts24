@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../db/firebase.js';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom'
-import { Formik, Field, Form } from 'formik';
+import { useRouter } from "next/router";
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import styles from "../../styles/Formik.module.css";
 
 const initialValues = {
@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
   });
 
 const Login = () => {
-    const nav = useNavigate();
+    const nav = useRouter();
     const [error, setError] = useState(" ");
     const [loading, setLoading] = useState(false);
     const handleLogin = (values) => {
@@ -25,7 +25,7 @@ const Login = () => {
         signInWithEmailAndPassword(auth, values.email, values.password).then((cred) => {
             setLoading(false);
             const user = cred.user;
-            nav("/web3/mint");
+            nav.push("/web3/mint");
             console.log(user);
         }).catch((err) => {
             setError(err.message);
@@ -60,7 +60,7 @@ const Login = () => {
           </div>
         </Form>
       </Formik>
-    )g
+    )
 }
 
 export default Login;

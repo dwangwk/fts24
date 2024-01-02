@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useRouter } from "next/router";
 import { auth } from "../../db/firebase.js";
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import styles from "../../styles/Formik.module.css";
 
@@ -12,29 +12,8 @@ const initialValues = {
     confirmpassword : ""
 }
 
-const validateSignup = (val) => {
-    const error = {};
-    if (!values.username) {
-        error.username = "Username Required."
-    }
-    if (!values.email) {
-        error.username = "Email Required."
-    }
-    if (!values.password) {
-        error.username = "Password Required."
-    }
-    if (!values.confirmpassword) {
-        error.username = "Please confirm your password."
-    }
-    if (values.password !== values.confirmpassword) {
-        error.password = "Password do not match."
-    }
-    return error;
-}
-
-
 const Signup = () => {
-    const nav = useNavigate();
+    const nav = useRouter();
     const [error, setError] = useState(' ');
     const [loading, setLoading] = useState(false);
     const handleSubmit = async (values) => {
@@ -43,7 +22,7 @@ const Signup = () => {
             setLoading(false);
             const user = cred.user;
             console.log("created for: ", user);
-            nav("/web3/mint");
+            nav.push("/web3/mint");
         }).catch((err) => {
             setError(err.message);
             setLoading(false);
@@ -55,10 +34,31 @@ const Signup = () => {
                 console.log(err);
             })
     }
+
+    const validateSignup = (values) => {
+      const error = {};
+      if (!values.username) {
+          error.username = "Username Required."
+      }
+      if (!values.email) {
+          error.username = "Email Required."
+      }
+      if (!values.password) {
+          error.username = "Password Required."
+      }
+      if (!values.confirmpassword) {
+          error.username = "Please confirm your password."
+      }
+      if (values.password !== values.confirmpassword) {
+          error.password = "Password do not match."
+      }
+      return error;
+    }
+    
     return (
     <Formik
         initialValues={initialValues}
-        validate={validateSignup}
+        validate={(values) => {validateSignup(values)}}
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
           resetForm();

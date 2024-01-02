@@ -36,3 +36,4 @@ yarn-error.log*
 
 #api-keys
 keys.json
+firebase_config.json

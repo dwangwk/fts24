@@ -25,7 +25,7 @@ const Login = () => {
         signInWithEmailAndPassword(auth, values.email, values.password).then((cred) => {
             setLoading(false);
             const user = cred.user;
-            nav.push("/web3/mint");
+            nav.push("/web3/user");
             console.log(user);
         }).catch((err) => {
             setError(err.message);

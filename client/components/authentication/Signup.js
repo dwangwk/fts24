@@ -21,8 +21,9 @@ const Signup = () => {
         await createUserWithEmailAndPassword(auth, values.email, values.password).then((cred) => {
             setLoading(false);
             const user = cred.user;
+            updateProfile(auth.currentUser, {displayName : values.username});
             console.log("created for: ", user);
-            nav.push("/web3/mint");
+            nav.push("/web3/user");
         }).catch((err) => {
             setError(err.message);
             setLoading(false);

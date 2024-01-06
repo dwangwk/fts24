@@ -12,7 +12,7 @@ const UserHoldings = () => {
     const wallet = useWallet();
     if (!wallet) {return(<div>No wallet connected</div>);}
     const [loading, setLoading] = useState(false);
-    const [output, setOutput] = useState([]);
+    const [output, setOutput] = useState([]);xw
     useEffect(() => {
         setLoading(true);
         setOutput([]);

@@ -5,9 +5,15 @@ import { createContext, useContext, useReducer } from 'react';
 const AppContext = createContext();
 
 const initialState = {
-  formData: {
+  mintFormData: {
     recipientAddress: '',
     amount: '',
+  },
+  transferFormData: {
+    recipientAddress: '',
+    amount: '',
+    src_token: '',
+    destchain: "16015286601757825753", // Defaults to Sepolia testnet
   },
 };
 

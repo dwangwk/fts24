@@ -1,36 +1,24 @@
-import { ConnectWallet } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
-import Image from "next/image";
-import MintForm from "../components/MintForm";
-import { useAppContext } from '../contexts/AppContext';
+import Login from "../components/authentication/login";
+import Signup from "../components/authentication/signup";
+import React, { useState } from 'react';
 
-export default function Home() {
-  const { state } = useAppContext();
-
-  return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <div className={styles.connect}>
-            <ConnectWallet
-              dropdownPosition={{
-                side: "bottom",
-                align: "center",
-              }}
-            />
-          </div>
-        </div>
-
-        {state.walletConnected && (
-          <div className={styles.content}>
-            <h1>Welcome!</h1>
-            <p>Your wallet address: {state.walletAddress}</p>
-
-            <MintForm />
-          </div>
-        )}
-
-      </div>
+const Home = () => {
+  const [loggingIn, setLoggingIn] = useState(true);
+  const switchSignup = () => {setLoggingIn(true);};
+  const switchLogin = () => {setLoggingIn(false);};
+  return (<main className={styles.main}>
+      {loggingIn ? (
+        <div>
+          <Login/>
+          <button onClick={(e) => {switchLogin()}} className={styles.button}>Do not have an account? Sign up instead!</button>
+        </div>) : (
+          <div>
+            <Signup/>
+            <button onClick={(e) => {switchSignup()}} className={styles.button}>Already have an account? Login instead!</button>
+          </div>)}
     </main>
-  );
+    );
 }
+
+export default Home;

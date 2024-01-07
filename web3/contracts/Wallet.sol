@@ -2,13 +2,12 @@
 pragma solidity ^0.8.0;
 
 import {IERC20} from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-solidity/v4.8.0/contracts/token/ERC20/IERC20.sol";
-import {OwnerIsCreator} from "@chainlink/contracts-ccip/src/v0.8/shared/access/OwnerIsCreator.sol";
 
-contract Wallet is OwnerIsCreator {
+contract Wallet {
 
     mapping(address => uint) public balance;
 
-    address owner;
+    address private owner;
     
     string public name;
 

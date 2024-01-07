@@ -28,4 +28,8 @@ contract Wallet is OwnerIsCreator {
         balance[token] -= amount;
         payable(owner).transfer(amount);
     }
+
+    function getBalances(address token_) public view returns (uint) {
+        return balance[token_];
+    }
 }

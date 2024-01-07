@@ -23,19 +23,20 @@ const Signup = () => {
             setLoading(false);
             const user = cred.user;
             updateProfile(auth.currentUser, {displayName : values.username});
-            createWallet(values);
-            console.log("created for: ", user);
             nav.push("/web3/user");
         }).catch((err) => {
             setError(err.message);
             setLoading(false);
             console.log(err.code, err.message);
-        })
-
+        });
+        
         await updateProfile(auth.currentUser, {displayName: username}).then(
             () => {console.log("Updated profile for ", username);}).catch((err) => {
                 console.log(err);
-            })
+            });
+        
+        await createWallet(values).then(() => {
+            console.log("created wallet for ", values.email);});
     }
 
     const validateSignup = (values) => {
@@ -65,6 +66,7 @@ const Signup = () => {
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
           resetForm();
+          setLoading(false);
         }}
       >
         <Form>

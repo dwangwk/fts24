@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import { auth } from "../../db/firebase.js";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import createWallet from "../../scripts/createWallet";
 import styles from "../../styles/Formik.module.css";
 
 const initialValues = {
     username : "",
     email : "",
     password : "",
-    confirmpassword : ""
+    confirmpassword: ""
 }
 
 const Signup = () => {
@@ -22,18 +23,20 @@ const Signup = () => {
             setLoading(false);
             const user = cred.user;
             updateProfile(auth.currentUser, {displayName : values.username});
-            console.log("created for: ", user);
             nav.push("/web3/user");
         }).catch((err) => {
             setError(err.message);
             setLoading(false);
             console.log(err.code, err.message);
-        })
-
+        });
+        
         await updateProfile(auth.currentUser, {displayName: username}).then(
             () => {console.log("Updated profile for ", username);}).catch((err) => {
                 console.log(err);
-            })
+            });
+        
+        await createWallet(values).then(() => {
+            console.log("created wallet for ", values.email);});
     }
 
     const validateSignup = (values) => {
@@ -63,6 +66,7 @@ const Signup = () => {
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
           resetForm();
+          setLoading(false);
         }}
       >
         <Form>

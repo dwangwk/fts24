@@ -7,17 +7,18 @@ const Home = () => {
   const [loggingIn, setLoggingIn] = useState(true);
   const switchSignup = () => {setLoggingIn(true);};
   const switchLogin = () => {setLoggingIn(false);};
-  return (<main className={styles.main}>
-      {loggingIn ? (
-        <div>
-          <Login/>
-          <button onClick={(e) => {switchLogin()}} className={styles.button}>Do not have an account? Sign up instead!</button>
-        </div>) : (
+  return (
+      <main className={styles.main}>
+        {loggingIn ? (
           <div>
-            <Signup/>
-            <button onClick={(e) => {switchSignup()}} className={styles.button}>Already have an account? Login instead!</button>
-          </div>)}
-    </main>
+            <Login/>
+            <button onClick={(e) => {switchLogin()}} className={styles.button}>Do not have an account? Sign up instead!</button>
+          </div>) : (
+            <div>
+              <Signup/>
+              <button onClick={(e) => {switchSignup()}} className={styles.button}>Already have an account? Login instead!</button>
+            </div>)}
+      </main>
     );
 }
 

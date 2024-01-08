@@ -15,7 +15,7 @@ contract WalletCollection {
         emit CreateWallet(address(new_wallet));
         return address(new_wallet);
     }
-
+    
     function getAllWallets() public view returns (address[] memory) {
         return wallets;
     }

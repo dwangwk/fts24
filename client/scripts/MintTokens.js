@@ -1,5 +1,4 @@
 import { Sepolia } from "@thirdweb-dev/chains";
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 const MintTokens = async (data) => {
     const to = data.values.recipientAddress;

@@ -1,5 +1,4 @@
 import { ThirdwebProvider } from "@thirdweb-dev/react"
-import { ConnectWallet } from "@thirdweb-dev/react";
 import { AppProvider } from '../../contexts/AppContext';
 import Navbar from "../../components/navigation/Navbar";
 import styles from "../../styles/user.module.css";
@@ -24,13 +23,6 @@ const UserProfile = () => {
                     <div className={styles.holdingbox}>
                         <div className={styles.titlebox}>
                             <h1 className={styles.title}>My Holdings</h1>
-                            <ConnectWallet
-                            dropdownPosition={{
-                            side: "bottom",
-                            align: "center",
-                            }}
-                            theme="light"
-                        /> 
                         </div>
                         <div>
                             <UserHoldings></UserHoldings>

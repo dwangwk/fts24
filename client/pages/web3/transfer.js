@@ -16,17 +16,13 @@ const Mint = () => {
 			<Navbar></Navbar>
         <main className={styles.main}>
           <div className={styles.container}>
-            <div className={styles.container_upper}>
                 <div className={styles.title}>
                   Transfer Tokens
                 </div>
-                <div className={styles.wallet_box}>
-                </div>
-              </div>
               <div className={styles.container_lower}>
               <TransferForm transferTokens={(tFormData) => {
                  console.log('Transferring tokens with:', tFormData);
-                 transferToken(tFormData).catch((err) => console.log(err));
+                 //transferToken(tFormData).catch((err) => console.log(err));
               }} />
               </div>
             </div>

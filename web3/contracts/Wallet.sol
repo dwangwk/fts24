@@ -27,10 +27,10 @@ contract Wallet {
         balance[token] -= amount;
     }
 
-    function withdraw(address token, uint amount) external owner_only {
+    function withdraw(address token, uint amount, address to) external owner_only {
         require(amount > balance[token], "You do not have enough to withdraw.");
         balance[token] -= amount;
-        payable(owner).transfer(amount);
+        payable(to).transfer(amount);
     }
 
     function getBalances(address token_) public view returns (uint) {

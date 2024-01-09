@@ -1,7 +1,7 @@
 # Ecobridge
 
 ## Introduction
-EcoBridge, is a platform that utilizes smart contracts and custodian wallets to consolidate the tokenised carbon credit markets.
+EcoBridge is a platform that utilizes smart contracts and custodian wallets to consolidate the tokenised carbon credit markets.
 
 ## Tooling
 - JavaScript (React.js, Next.js, Ether.js)

@@ -24,13 +24,6 @@ const UserProfile = () => {
                     <div className={styles.holdingbox}>
                         <div className={styles.titlebox}>
                             <h1 className={styles.title}>My Holdings</h1>
-                            <ConnectWallet
-                            dropdownPosition={{
-                            side: "bottom",
-                            align: "center",
-                            }}
-                            theme="light"
-                        /> 
                         </div>
                         <div>
                             <UserHoldings></UserHoldings>

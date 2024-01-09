@@ -13,7 +13,7 @@ const abi = [
 const transferToken = async (data) => {
     const to_username = data.to;
     const from_username = auth.currentUser.email;
-    const amount = data.amt;
+    const amount = data.amount;
     const token = data.token;
     const from_contract = await getDoc(doc(db, "users", from_username));
     const to_contract = await getDoc(doc(db, "users", to_username));

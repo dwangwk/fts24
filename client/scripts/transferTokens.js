@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { auth } from "../../db/firebase.js";
+import { auth } from "../db/firebase";
 import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
 

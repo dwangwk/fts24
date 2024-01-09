@@ -1,5 +1,4 @@
 import { ThirdwebProvider } from "@thirdweb-dev/react"
-import { ConnectWallet } from "@thirdweb-dev/react";
 import { AppProvider } from '../../contexts/AppContext';
 import Navbar from "../../components/navigation/Navbar";
 import styles from "../../styles/user.module.css";

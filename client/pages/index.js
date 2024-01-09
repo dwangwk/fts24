@@ -15,8 +15,8 @@ const Home = () => {
             <Image src="/images/logo.png" height={300} width={300} alt="logo"></Image>
           </div>
           <div>
-            <h1 className={styles.title}>EcoBridge</h1>
-            <p className={styles.sub}>The one-stop carbon credit exchange</p> 
+            <h1 className={styles.title}>ecobridge</h1>
+            <p className={styles.sub}>the one-stop tokenized carbon credit exchange</p> 
             {loggingIn ? (
               <div>
                 <Login/>
@@ -29,7 +29,21 @@ const Home = () => {
           </div>
         </div>
         <div className={styles.supportcontainer}>
-            <p className={styles.subtext}>We support</p>
+            <p className={styles.subtext}>Supports</p>
+            <div className={styles.tokenbox}>
+              <li className={styles.opt}>
+                <Image src="/images/kilma.png" width={30} height={30} alt="image of token"></Image>
+              </li>
+              <li className={styles.opt}>
+                <Image src="/images/tco2.png" width={30} height={30} alt="image of token"></Image>
+              </li>
+              <li className={styles.opt}>
+                <Image src="/images/mco2.png" width={30} height={30} alt="image of token"></Image>
+              </li>
+              <li className={styles.opt}>
+                <Image src="/images/bct.png" width={30} height={30} alt="image of token"></Image>
+              </li>
+            </div>
         </div>
       </main>
     );

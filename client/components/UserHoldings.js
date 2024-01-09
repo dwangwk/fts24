@@ -7,15 +7,21 @@ import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
 
 const token_ids = [
-    "0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e", // KILMA
-    "0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a" // TCO2
+    "0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e",
+    "0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a",
+    //"0x0", // Temp value for BCT
+    //"0x1" // Temp value for MCO2
 ];
 
 const token_map = new Map();
 token_map.set("0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e", 
-    {name: "Wrapped KILMA", asset: "/images/kilma.png"});
+    {name: "KILMA", asset: "/images/kilma.png"});
 token_map.set("0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a", 
-    {name: "Wrapped TCO2", asset: "/images/tco2.png"});
+    {name: "TCO2", asset: "/images/tco2.png"});
+//token_map.set("0x1", 
+//    {name: "BCT", asset: "/images/bct.png"});
+//token_map.set("0x0", 
+//   {name: "MCO2", asset: "/images/mco2.png"});
 
 const abi = [
     "function transfer_remove (address token, uint amount) external owner_only",
@@ -47,7 +53,7 @@ const UserHoldings = () => {
                     asset : token_map.get(x)["asset"]};
             })).then((entries) => {
                     const processed = entries.map(x => (
-                        <div key = {x.symbol}>
+                        <div key = {x.symbol} className={styles.holdingboxinner}>
                                 <div className = {styles.entryBox}>
                                     <li className = {styles.entry}>
                                         <Image src={x.asset} 

@@ -1,9 +1,15 @@
 .entryBox {
     align-items: center;
     display: flex;
-    padding: 1rem;
     font-family: monospace;
     color:#325f50;
+    box-shadow: 2px 2px 2px 1px grey;
+    margin-bottom: 1%;
+    size: 50%;
+}
+
+.holdingboxinner {
+    width: 50%
 }
 
 .infobox {

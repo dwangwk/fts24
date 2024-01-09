@@ -5,6 +5,17 @@
   background-color: #fefeff;
 }
 
+.tokenbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opt {
+  display: block;
+  padding: 10%;
+}
+
 .logincontainer {
   display : flex;
   align-items: center;
@@ -20,6 +31,7 @@
 .supportcontainer {
   padding:5%;
   display : flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from "../styles/user.module.css";
 import { ethers } from "ethers";
+import Image from 'next/image';
 import { auth } from "../db/firebase";
 import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
@@ -11,8 +12,10 @@ const token_ids = [
 ];
 
 const token_map = new Map();
-token_map.set("0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e", "KILMA");
-token_map.set("0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a", "TCO2");
+token_map.set("0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e", 
+    {name: "Wrapped KILMA", asset: "/images/kilma.png"});
+token_map.set("0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a", 
+    {name: "Wrapped TCO2", asset: "/images/tco2.png"});
 
 const abi = [
     "function transfer_remove (address token, uint amount) external owner_only",
@@ -40,13 +43,16 @@ const UserHoldings = () => {
                 var y = await contract.getBalances(x).then(
                 (x) => {return x;}).catch((err) => {console.log(err); 
                     return (<div>Problem loading holdings...</div>)})
-                console.log("x: ", token_map.get(x));
-                console.log("y: ", ethers.utils.formatEther(y));
-                return {symbol: token_map.get(x), displayValue : ethers.utils.formatEther(y)};
+                return {symbol: token_map.get(x)["name"], displayValue : ethers.utils.formatEther(y),
+                    asset : token_map.get(x)["asset"]};
             })).then((entries) => {
                     const processed = entries.map(x => (
                         <div key = {x.symbol}>
                                 <div className = {styles.entryBox}>
+                                    <li className = {styles.entry}>
+                                        <Image src={x.asset} 
+                                            width={30} height={30} alt="image of token"></Image>
+                                    </li>
                                     <li className = {styles.entry}>
                                         {x.symbol}
                                     </li>

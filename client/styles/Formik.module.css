@@ -27,4 +27,5 @@
 .option {
     color: #315840;
     font-family: monospace;
+    display: inline-block;
 }

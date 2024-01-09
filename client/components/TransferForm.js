@@ -38,9 +38,8 @@ const TransferForm = ({transferTokens})=> {
                 <div className={styles.entrybox}>
                     <label htmlFor="token"  className={styles.label}>Token:</label>
                     <Field as="select" type="text" name="token" id="token" className={styles.option}>
-                        <option value="" className={styles.option}>TCO2</option>
-                        <option value="" className={styles.option}>MCO2</option>
-                        <option value="" className={styles.option}>BCT</option>
+                        <option value="0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a" className={styles.option}>TCO2</option>
+                        <option value="0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e" className={styles.option}>KILMA</option>
                     </Field>
                     <ErrorMessage name="token" component="div" />
                 </div>

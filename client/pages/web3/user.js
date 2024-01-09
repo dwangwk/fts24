@@ -32,9 +32,6 @@ const UserProfile = () => {
                             theme="light"
                         /> 
                         </div>
-                        <div>
-                            <UserHoldings></UserHoldings>
-                        </div>
                     </div>
                 </div>
             </AppProvider>

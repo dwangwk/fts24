@@ -16,10 +16,15 @@ contract Wallet {
         owner = _owner;
     }
 
-    modifier owner_only() {require(owner == owner, "Only owner can call this function."); _;}
+    modifier owner_only() {require(msg.sender == owner, "Only owner can call this function."); _;}
 
     function deposit(address token, uint amount) external payable {
         balance[token] += amount;
+    }
+
+    function transfer_remove (address token, uint amount) external owner_only {
+        require(amount > balance[token], "You do not have enough to transfer.");
+        balance[token] -= amount;
     }
 
     function withdraw(address token, uint amount) external owner_only {

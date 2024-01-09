@@ -1,44 +1,65 @@
 import React, { useState, useEffect } from 'react';
-import { useWallet } from "@thirdweb-dev/react";
 import styles from "../styles/user.module.css";
+import { ethers } from "ethers";
+import { auth } from "../db/firebase";
+import { db } from "../db/firebase";
+import { getDoc, doc } from "firebase/firestore";
 
-// Token IDs only work for Sepolia Testnet.
 const token_ids = [
-    "0x779877A7B0D9E8603169DdbD7836e478b4624789", // LINK
-    "0x36160274B0ED3673E67F2CA5923560a7a0c523aa" // USDT
+    "0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e", // KILMA
+    "0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a" // TCO2
 ];
 
+const token_map = new Map();
+token_map.set("0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e", "KILMA");
+token_map.set("0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a", "TCO2");
+
+const abi = [
+    "function transfer_remove (address token, uint amount) external owner_only",
+    "function deposit(address token, uint amount) external payable",
+    "function withdraw(address token, uint amount) external owner_only",
+    "function getBalances(address token_) public view returns (uint)",
+]
+
 const UserHoldings = () => {
-    const wallet = useWallet();
-    if (!wallet) {return(<div>No wallet connected</div>);}
+    const from_username = auth.currentUser.email;
+    const private_key = require("../pages/web3/keys.json")["meta-mask"];
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = new ethers.Wallet(private_key, provider);
     const [loading, setLoading] = useState(false);
     const [output, setOutput] = useState([]);
     useEffect(() => {
         setLoading(true);
         setOutput([]);
-        Promise.all(token_ids.map(x => wallet.getBalance(x).then(
-            (x) => {return x;}).catch((err) => 
-            {console.log(err);
-                return (<div>Problem loading holdings...</div>)
-            }))).then((entries) => {
-                const processed = entries.map(x => (
-                    <div key = {x.symbol}>
-                            <div className = {styles.entryBox}>
-                            <li className = {styles.entry}>
-                                {x.name}
-                            </li>
-                            <li className = {styles.entry}>
-                                {x.symbol}
-                            </li>
-                            <li className = {styles.entry}>
-                                {x.displayValue}
-                            </li>
+        getDoc(doc(db, "users", from_username)).then((x) => {
+            console.log("Pulled from firestore: ", x.data());
+            return new ethers.Contract(x.data()['walletAddress'], abi, signer);
+        }).then((contract) => {
+            console.log("Contract established: ", contract);
+            Promise.all(token_ids.map(async(x) => {
+                var y = await contract.getBalances(x).then(
+                (x) => {return x;}).catch((err) => {console.log(err); 
+                    return (<div>Problem loading holdings...</div>)})
+                console.log("x: ", token_map.get(x));
+                console.log("y: ", ethers.utils.formatEther(y));
+                return {symbol: token_map.get(x), displayValue : ethers.utils.formatEther(y)};
+            })).then((entries) => {
+                    const processed = entries.map(x => (
+                        <div key = {x.symbol}>
+                                <div className = {styles.entryBox}>
+                                    <li className = {styles.entry}>
+                                        {x.symbol}
+                                    </li>
+                                    <li className = {styles.entry}>
+                                        {x.displayValue}
+                                    </li>
+                            </div>
                         </div>
-                    </div>
-                    ));
-                setOutput(processed);
-                setLoading(false);
-            }).catch((err) => {setLoading(false); console.log(err);});
+                        ));
+                    setOutput(processed);
+                    setLoading(false);
+                }).catch((err) => {setLoading(false); console.log(err);});
+        })
     }, []);
     
     return (

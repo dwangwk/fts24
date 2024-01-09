@@ -20,8 +20,8 @@ const transferToken = async (data) => {
     if (!to_contract.exists()) {
         console.log(to_username, " does not exist.")
     }
-    const from_ = from_contract["walletAddress"];
-    const to_ = to_contract["walletAddress"];
+    const from_ = from_contract.data()["walletAddress"];
+    const to_ = to_contract.data()["walletAddress"];
     const private_key = require("../pages/web3/keys.json")["meta-mask"];
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = new ethers.Wallet(private_key, provider);

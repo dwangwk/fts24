@@ -13,16 +13,17 @@ const abi = ["function mint(address to, uint amount) external",
         "function burn(address owner, uint amount) external"]
 
 const abi2 = [
-        "function transfer_remove (address token, uint amount) external owner_only",
+        "function transfer_remove (address token, uint amount) external",
         "function deposit(address token, uint amount) external payable",
-        "function withdraw(address token, uint amount) external owner_only",
+        "function withdraw(address token, uint amount) external",
         "function getBalances(address token_) public view returns (uint)",
-        ]
+];
 
 const BuyTokensNative = async (d) => {
     const to_username = auth.currentUser.email;
     const data = d.data;
-    const amount = BigNumber.from(data.amount);
+    const amount = data.amount;
+    console.log(amount);
     const to_wallet = await getDoc(doc(db, "users", to_username));
     const token = tokens.get(d.token);
     const to = to_wallet.data()["walletAddress"];
@@ -31,12 +32,16 @@ const BuyTokensNative = async (d) => {
     const signer = new ethers.Wallet(private_key, provider);
     const contract = new ethers.Contract(token, abi, signer);
     console.log("contract established: ", contract);
-    const tx = await contract.mint(to, amount);
+    var tx = await contract.mint(to, amount);
     console.log("tx success: ", tx);
-    const rc = await tx.wait();
+    var rc = await tx.wait();
     console.log(rc.events[0]);
     const updatestate_ = new ethers.Contract(to, abi2, signer);
-    await updatestate_.deposit(token, amount);
+    console.log("contract established: ", updatestate_);
+    tx = await updatestate_.deposit(token, amount);
+    console.log("tx success: ", tx);
+    rc = await tx.wait();
+    console.log(rc.events[0]);
 }
 
 export default BuyTokensNative

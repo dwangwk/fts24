@@ -15,7 +15,9 @@ const validationSchema = Yup.object().shape({
 const BuyTokenForm = ({ token_name }) => {
   const { state, dispatch } = useAppContext();
   const selector = (d) => {
-    if (token_name == "TCO2") {BuyTokensCrossChain(d);} else {BuyTokensNative({token: token_name, data: d});}
+    console.log("token_name", token_name);
+    if (token_name == "TCO2") {console.log("submit: ", d);
+      BuyTokensCrossChain(d);} else {console.log("submit: ", d); BuyTokensNative({token: token_name, data: d});}
   }
   return (
       <Formik

@@ -13,9 +13,9 @@ const abi = [
 ]
 
 const abi2 = [
-    "function transfer_remove (address token, uint amount) external owner_only",
+    "function transfer_remove (address token, uint amount) external",
     "function deposit(address token, uint amount) external payable",
-    "function withdraw(address token, uint amount) external owner_only",
+    "function withdraw(address token, uint amount) external",
     "function getBalances(address token_) public view returns (uint)",
     ]
 

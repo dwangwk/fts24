@@ -10,7 +10,6 @@ interface IToken {
 contract BridgeBase is Ownable {
     address public admin;
     IToken public token;
-    mapping(address => mapping(uint => bool)) processedNonces;
 
     enum Step { Mint, Burn }
 
@@ -19,7 +18,6 @@ contract BridgeBase is Ownable {
         address indexed to,
         uint256 amount,
         uint256 date,
-        uint256 nonce,
         Step indexed step
     );
 
@@ -32,17 +30,13 @@ contract BridgeBase is Ownable {
 
     event AdminSet(address indexed admin);
 
-    function burn(address to, uint256 amount, uint256 nonce) external {
-        require(!processedNonces[msg.sender][nonce], "Transfer Processed.");
-        processedNonces[msg.sender][nonce] = true;
+    function burn(address to, uint256 amount) external {
         token.burn(msg.sender, amount);
-        emit Transfer(msg.sender, to, amount, block.timestamp, nonce, Step.Burn);
+        emit Transfer(msg.sender, to, amount, block.timestamp, Step.Burn);
     }
 
-    function mint(address to, uint256 amount, uint256 nonce) external {
-        require(!processedNonces[msg.sender][nonce], "Transfer Processed.");
-        processedNonces[msg.sender][nonce] = true;
+    function mint(address to, uint256 amount) external {
         token.mint(to, amount);
-        emit Transfer(msg.sender, to, amount, block.timestamp, nonce, Step.Mint);
+        emit Transfer(msg.sender, to, amount, block.timestamp, Step.Mint);
     }
 }

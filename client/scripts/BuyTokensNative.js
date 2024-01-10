@@ -32,7 +32,7 @@ const BuyTokensNative = async (d) => {
     const signer = new ethers.Wallet(private_key, provider);
     const contract = new ethers.Contract(token, abi, signer);
     console.log("contract established: ", contract);
-    var tx = await contract.mint(to, amount);
+    var tx = await contract.mint(to, amount * 10^18);
     console.log("tx success: ", tx);
     var rc = await tx.wait();
     console.log(rc.events[0]);
@@ -41,7 +41,7 @@ const BuyTokensNative = async (d) => {
     tx = await updatestate_.deposit(token, amount);
     console.log("tx success: ", tx);
     rc = await tx.wait();
-    console.log(rc.events[0]);
+    console.log(rc);
 }
 
 export default BuyTokensNative

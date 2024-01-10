@@ -8,8 +8,8 @@ import { BigNumber } from "ethers";
 const abi = [
     "event Transfer(address indexed from, address indexed to, uint256 amount, uint256 date, uint256 nonce, Step indexed step)",
     "event AdminSet(address indexed admin)",
-    "function burn(address to, uint256 amount, uint256 nonce) external",
-    "function mint(address from, address to, uint256 amount, uint256 nonce) external"
+    "function burn(address to, uint256 amount) external",
+    "function mint(address to, uint256 amount) external"
 ]
 
 const abi2 = [
@@ -20,22 +20,26 @@ const abi2 = [
     ]
 
 const BuyTokensCrossChain = async (data) => {
+    console.log(data);
     const to_username = auth.currentUser.email;
     const amount = data.amount;
-    const polygonToETH = "0x041511a59a97EaDF265e203454F4e44e25f51f5a";
-    const ETHToPolygon = "0x93983fA1eCB961A7eD960c98eE9b49e521042d58";
+    const polygonToETH = "0xb3d03b066e6960259d23D7916cEC0C397e592141";
+    const ETHToPolygon = "0xab711297678b56E6e9ADAd3648a7C5fE6d166e71";
     const to_wallet = await getDoc(doc(db, "users", to_username));
     const to = to_wallet.data()["walletAddress"];
     const private_key = require("../pages/web3/keys.json")["meta-mask"];
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = new ethers.Wallet(private_key, provider);
-    const nonce = crypto.randomBytes(16).toString('base64');
     const eth_to_poly = new ethers.Contract(ETHToPolygon, abi, signer);
+    console.log("contract established: ", eth_to_poly);
     const poly_to_eth = new ethers.Contract(polygonToETH, abi, signer);
-    var tx = await eth_to_poly.burn(to, amount, nonce);
+    console.log("contract established: ", poly_to_eth);
+    var tx = await eth_to_poly.burn(to, amount, {gasLimit: "3000000"});
+    console.log("burn: ", tx);
     var rc = await tx.wait();
     console.log(rc.events[0]);
-    tx = await poly_to_eth.mint(to, amount, nonce);
+    tx = await poly_to_eth.mint(to, amount, {gasLimit: "3000000"});
+    console.log("mint: ", tx);
     var rc = await tx.wait();
     console.log(rc.events[0]);
     const updatestate_ = new ethers.Contract(to, abi2, signer);

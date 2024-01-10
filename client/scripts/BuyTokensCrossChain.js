@@ -23,6 +23,7 @@ const BuyTokensCrossChain = async (data) => {
     console.log(data);
     const to_username = auth.currentUser.email;
     const amount = ethers.utils.parseEther(`${data.amount}`);
+    const gasFees = ethers.utils.parseEther("3");
     const polygonToETH = "0xb3d03b066e6960259d23D7916cEC0C397e592141";
     const ETHToPolygon = "0xab711297678b56E6e9ADAd3648a7C5fE6d166e71";
     const to_wallet = await getDoc(doc(db, "users", to_username));
@@ -34,11 +35,11 @@ const BuyTokensCrossChain = async (data) => {
     console.log("contract established: ", eth_to_poly);
     const poly_to_eth = new ethers.Contract(polygonToETH, abi, signer);
     console.log("contract established: ", poly_to_eth);
-    var tx = await eth_to_poly.burn(to, amount, {gasLimit: "3000000"});
+    var tx = await eth_to_poly.burn(to, amount, {gasLimit: gasFees});
     console.log("burn: ", tx);
     var rc = await tx.wait();
     console.log(rc.events[0]);
-    tx = await poly_to_eth.mint(to, amount, {gasLimit: "3000000"});
+    tx = await poly_to_eth.mint(to, amount, {gasLimit: gasFees});
     console.log("mint: ", tx);
     var rc = await tx.wait();
     console.log(rc.events[0]);

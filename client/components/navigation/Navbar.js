@@ -15,11 +15,6 @@ const Navbar = () => {
                     <p className={styles.link}>Transfer Credits</p>
                   </Link>
               </li>
-              <li className={styles.entry}>
-                  <Link href="/web3/mint" style={{textDecoration: 'none', color : 'white'}}>
-                    <p className={styles.link}>Mint Credits</p>
-                  </Link>
-              </li>
         </nav>
   );
 };

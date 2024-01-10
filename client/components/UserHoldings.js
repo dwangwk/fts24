@@ -7,21 +7,20 @@ import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
 
 const token_ids = [
-    "0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e",
-    "0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a",
-    //"0x0", // Temp value for BCT
-    //"0x1" // Temp value for MCO2
+    "0x078a711a6d52CDe57Cbd9dd0ed70f3F960781e12",
+    "0x74799280A3Ee2C92f454dAd4fA57E18a96346a76",
+    "0x0C7AdaF776B78739F50B284Da52b8875E3056406",
 ];
 
 const token_map = new Map();
-token_map.set("0xCbE42d4CB0cbF089249D902B4A8b5daD264a731e", 
+token_map.set("0x078a711a6d52CDe57Cbd9dd0ed70f3F960781e12", 
     {name: "KILMA", asset: "/images/kilma.png"});
-token_map.set("0x9D23F8EF5e50b8E336e34b7d78e05f48a70A9E4a", 
+token_map.set("0x74799280A3Ee2C92f454dAd4fA57E18a96346a76", 
     {name: "TCO2", asset: "/images/tco2.png"});
 //token_map.set("0x1", 
 //    {name: "BCT", asset: "/images/bct.png"});
-//token_map.set("0x0", 
-//   {name: "MCO2", asset: "/images/mco2.png"});
+token_map.set("0x0C7AdaF776B78739F50B284Da52b8875E3056406", 
+   {name: "MCO2", asset: "/images/mco2.png"});
 
 const abi = [
     "function transfer_remove (address token, uint amount) external owner_only",
@@ -46,9 +45,11 @@ const UserHoldings = () => {
         }).then((contract) => {
             console.log("Contract established: ", contract);
             Promise.all(token_ids.map(async(x) => {
+                console.log(token_map.get(x)["name"]);
                 var y = await contract.getBalances(x).then(
-                (x) => {return x;}).catch((err) => {console.log(err); 
+                (b) => {console.log("contractbalance: ", b); return b;}).catch((err) => {console.log(err); 
                     return (<div>Problem loading holdings...</div>)})
+                console.log("return from getbalance: ", y);
                 return {symbol: token_map.get(x)["name"], displayValue : ethers.utils.formatEther(y),
                     asset : token_map.get(x)["asset"]};
             })).then((entries) => {

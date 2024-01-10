@@ -5,7 +5,7 @@ import {IERC20} from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-sol
 
 contract Wallet {
 
-    mapping(address => uint) public balance;
+    mapping(address => uint256) public balance;
 
     address private owner;
     
@@ -18,17 +18,17 @@ contract Wallet {
 
     modifier owner_only() {require(msg.sender == owner, "Only owner can call this function."); _;}
 
-    function deposit(address token, uint amount) external payable {
+    function deposit(address token, uint256 amount) external payable {
         balance[token] += amount;
     }
 
-    function transfer(address token, uint amount, address to) external owner_only {
+    function transfer(address token, uint256 amount, address to) external owner_only {
         require(amount > balance[token], "You do not have enough to transfer.");
         balance[token] -= amount;
         IERC20(token).transfer(to, amount);
     }
 
-    function withdraw(address token, uint amount, address to) external owner_only {
+    function withdraw(address token, uint256 amount, address to) external owner_only {
         require(amount > balance[token], "You do not have enough to withdraw.");
         balance[token] -= amount;
         payable(to).transfer(amount);

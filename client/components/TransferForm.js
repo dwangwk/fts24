@@ -6,7 +6,7 @@ import styles from "../styles/Formik.module.css";
 
 const validationSchema = Yup.object().shape({
   to: Yup.string().required('Recipient username is required'),
-  amount: Yup.number().min(1, 'Amount must be greater than 0').required('Amount is required'),
+  amount: Yup.number().min(0, 'Amount must be greater than 0').required('Amount is required'),
   token: Yup.string().required("You need to select a token to transfer.") 
 });
 

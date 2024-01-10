@@ -22,9 +22,10 @@ contract Wallet {
         balance[token] += amount;
     }
 
-    function transfer_remove (address token, uint amount) external owner_only {
+    function transfer(address token, uint amount, address to) external owner_only {
         require(amount > balance[token], "You do not have enough to transfer.");
         balance[token] -= amount;
+        IERC20(token).transfer(to, amount);
     }
 
     function withdraw(address token, uint amount, address to) external owner_only {

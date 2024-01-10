@@ -10,7 +10,7 @@ const MarketplaceEntry = ({data}) => {
     return (
         <div className={styles.main}>
             <div>
-                <Image src={imageloc} height={50} width={50}></Image>
+                <Image src={imageloc} height={50} width={50} alt={"image of token"}></Image>
             </div>
             <div className={styles.textbox}>
                 <h4>{token}</h4>

@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { auth } from "../db/firebase";
 import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
+import { BigNumber } from "ethers";
 
 const abi = [
     "function transfer_remove (address token, uint amount) external owner_only",
@@ -13,7 +14,7 @@ const abi = [
 const transferToken = async (data) => {
     const to_username = data.to;
     const from_username = auth.currentUser.email;
-    const amount = data.amount;
+    const amount = BigNumber.from(data.amount);
     const token = data.token;
     const from_contract = await getDoc(doc(db, "users", from_username));
     const to_contract = await getDoc(doc(db, "users", to_username));

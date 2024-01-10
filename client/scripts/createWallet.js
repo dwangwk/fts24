@@ -9,7 +9,7 @@ const abi = [
 ]
 
 const createWallet = async (data) => {
-    const wallet_controller = "0x041511a59a97EaDF265e203454F4e44e25f51f5a";
+    const wallet_controller = "0x8c9211072Bff97DB1cF5e956DC734a1894463Cc2";
     const under_custody = data.email;
     const private_key = require("../pages/web3/keys.json")["meta-mask"];
     const provider = new ethers.providers.Web3Provider(window.ethereum);

@@ -45,9 +45,11 @@ const UserHoldings = () => {
         }).then((contract) => {
             console.log("Contract established: ", contract);
             Promise.all(token_ids.map(async(x) => {
+                console.log(token_map.get(x)["name"]);
                 var y = await contract.getBalances(x).then(
-                (x) => {return x;}).catch((err) => {console.log(err); 
+                (b) => {console.log("contractbalance: ", b); return b;}).catch((err) => {console.log(err); 
                     return (<div>Problem loading holdings...</div>)})
+                console.log("return from getbalance: ", y);
                 return {symbol: token_map.get(x)["name"], displayValue : ethers.utils.formatEther(y),
                     asset : token_map.get(x)["asset"]};
             })).then((entries) => {

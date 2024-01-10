@@ -7,6 +7,7 @@ import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
 
 const token_ids = [
+    "0x1838926a37C0E768501b59785749C7f494e9c9d8",
     "0x078a711a6d52CDe57Cbd9dd0ed70f3F960781e12",
     "0x74799280A3Ee2C92f454dAd4fA57E18a96346a76",
     "0x0C7AdaF776B78739F50B284Da52b8875E3056406",
@@ -21,6 +22,8 @@ token_map.set("0x74799280A3Ee2C92f454dAd4fA57E18a96346a76",
 //    {name: "BCT", asset: "/images/bct.png"});
 token_map.set("0x0C7AdaF776B78739F50B284Da52b8875E3056406", 
    {name: "MCO2", asset: "/images/mco2.png"});
+token_map.set("0x1838926a37C0E768501b59785749C7f494e9c9d8",
+    {name: "ECO", asset:"/images/logo.png"})
 
 const abi = [
     "function transfer_remove (address token, uint amount) external owner_only",

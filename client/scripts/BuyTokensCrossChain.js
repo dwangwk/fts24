@@ -19,8 +19,12 @@ const abi2 = [
     "function getBalances(address token_) public view returns (uint)",
     ]
 
-const BuyTokensCrossChain = async (data) => {
-    console.log(data);
+const tokens = new Map();
+tokens.set("TCO2", "0x74799280A3Ee2C92f454dAd4fA57E18a96346a76");
+
+const BuyTokensCrossChain = async (d) => {
+    const data = d.data;
+    const token = tokens.get(d.token);
     const to_username = auth.currentUser.email;
     const amount = ethers.utils.parseEther(`${data.amount}`);
     const gasFees = ethers.utils.parseEther("3");

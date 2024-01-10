@@ -17,7 +17,7 @@ const BuyTokenForm = ({ token_name }) => {
   const selector = (d) => {
     console.log("token_name", token_name);
     if (token_name == "TCO2") {console.log("submit: ", d);
-      BuyTokensCrossChain(d);} else {console.log("submit: ", d); BuyTokensNative({token: token_name, data: d});}
+      BuyTokensCrossChain({token : token_name, data: d});} else {console.log("submit: ", d); BuyTokensNative({token: token_name, data: d});}
   }
   return (
       <Formik

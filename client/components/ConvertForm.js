@@ -6,7 +6,7 @@ import styles from "../styles/Formik.module.css";
 
 const validationSchema = Yup.object().shape({
   recipientAddress: Yup.string().required('Recipient address is required'),
-  amount: Yup.number().min(1, 'Amount must be greater than 0').required('Amount is required'),
+  amount: Yup.number().min(0, 'Amount must be greater than 0').required('Amount is required'),
 });
 
 const ConvertForm = ({ onTransfer }) => {

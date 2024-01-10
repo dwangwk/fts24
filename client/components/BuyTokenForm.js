@@ -9,7 +9,7 @@ import BuyTokensNative from "../scripts/BuyTokensNative";
 
 
 const validationSchema = Yup.object().shape({
-  amount: Yup.number().min(1, 'Amount must be greater than 0').required('Amount is required'),
+  amount: Yup.number().min(0, 'Amount must be greater than 0').required('Amount is required'),
 });
 
 const BuyTokenForm = ({ token_name }) => {

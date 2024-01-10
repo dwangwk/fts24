@@ -22,7 +22,7 @@ const abi2 = [
 const BuyTokensCrossChain = async (data) => {
     console.log(data);
     const to_username = auth.currentUser.email;
-    const amount = data.amount;
+    const amount = ethers.utils.parseEther(`${data.amount}`);
     const polygonToETH = "0xb3d03b066e6960259d23D7916cEC0C397e592141";
     const ETHToPolygon = "0xab711297678b56E6e9ADAd3648a7C5fE6d166e71";
     const to_wallet = await getDoc(doc(db, "users", to_username));

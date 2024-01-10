@@ -7,6 +7,13 @@
     padding-top: 0.5rem;
 }
 
+.buttonboxbuy {
+    display: flex;
+    padding-top: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
 .button {
     font-family: monospace;
     background-color: #325f50;

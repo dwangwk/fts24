@@ -3,10 +3,10 @@ import { auth } from "../db/firebase";
 import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
 
-const tokens = map();
-map.set("KILMA", "0x078a711a6d52CDe57Cbd9dd0ed70f3F960781e12");
-map.set("Wrapped-TCO2", "0x74799280A3Ee2C92f454dAd4fA57E18a96346a76");
-map.set("TCO2", "0x9F4b9142b4890bD392B0C981df1F5DbdFDc79374");
+const tokens = Map();
+tokens.set("KILMA", "0x078a711a6d52CDe57Cbd9dd0ed70f3F960781e12");
+tokens.set("Wrapped-TCO2", "0x74799280A3Ee2C92f454dAd4fA57E18a96346a76");
+tokens.set("TCO2", "0x9F4b9142b4890bD392B0C981df1F5DbdFDc79374");
 
 const abi = []
 

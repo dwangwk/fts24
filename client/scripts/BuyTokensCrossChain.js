@@ -4,12 +4,7 @@ import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
 import crypto from "crypto";
 
-const tokens = map();
-map.set("KILMA", "0x078a711a6d52CDe57Cbd9dd0ed70f3F960781e12");
-map.set("Wrapped-TCO2", "0x74799280A3Ee2C92f454dAd4fA57E18a96346a76");
-map.set("TCO2", "0x9F4b9142b4890bD392B0C981df1F5DbdFDc79374");
-
-abi = [
+const abi = [
     "event Transfer(address indexed from, address indexed to, uint256 amount, uint256 date, uint256 nonce, Step indexed step)",
     "event AdminSet(address indexed admin)",
     "function burn(address to, uint256 amount, uint256 nonce) external",
@@ -19,8 +14,8 @@ abi = [
 const BuyTokensCrossChain = async (data) => {
     const to_username = auth.currentUser.email;
     const amount = data.amount;
-    const polygonToETH = "";
-    const ETHToPolygon = "";
+    const polygonToETH = "0x041511a59a97EaDF265e203454F4e44e25f51f5a";
+    const ETHToPolygon = "0x93983fA1eCB961A7eD960c98eE9b49e521042d58";
     const to_wallet = await getDoc(doc(db, "users", to_username));
     const to = to_wallet.data()["walletAddress"];
     const private_key = require("../pages/web3/keys.json")["meta-mask"];

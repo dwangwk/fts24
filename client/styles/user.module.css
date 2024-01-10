@@ -9,13 +9,14 @@
 
 .marketplace {
     flex-direction: column;
-    padding : 5%;
+    padding-left : 5%;
+    width: 50%;
 }
 
 .marketplace_inner {
     display : flex;
     flex-direction: column;
-    padding : 5%;
+    align-items: center;
 }
 
 .tokendisplay {

@@ -6,8 +6,7 @@ import { BigNumber } from "ethers";
 
 const tokens = new Map();
 tokens.set("KILMA", "0x078a711a6d52CDe57Cbd9dd0ed70f3F960781e12");
-tokens.set("MCO2", "0x0C7AdaF776B78739F50B284Da52b8875E3056406");
-tokens.set("ECO", "0x1838926a37C0E768501b59785749C7f494e9c9d8");
+tokens.set("MCO2", "0x0C7AdaF776B78739F50B284Da52b8875E3056406")
 
 const abi = ["function mint(address to, uint256 amount) external",
         "function updateAdmin(address newAdmin) external",
@@ -20,7 +19,7 @@ const abi2 = [
         "function getBalances(address token_) public view returns (uint)",
 ];
 
-const BuyTokensNative = async (d) => {
+const ConvertTokensNative = async (d) => {
     const to_username = auth.currentUser.email;
     const data = d.data;
     const amount = ethers.utils.parseEther(`${data.amount}`);
@@ -42,4 +41,4 @@ const BuyTokensNative = async (d) => {
     console.log(rc2);
 }
 
-export default BuyTokensNative
+export default ConvertTokensNative

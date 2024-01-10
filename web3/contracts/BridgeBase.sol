@@ -39,10 +39,10 @@ contract BridgeBase is Ownable {
         emit Transfer(msg.sender, to, amount, block.timestamp, nonce, Step.Burn);
     }
 
-    function mint(address from, address to, uint256 amount, uint256 nonce) external {
-        require(!processedNonces[from][nonce], "Transfer Processed.");
-        processedNonces[from][nonce] = true;
+    function mint(address to, uint256 amount, uint256 nonce) external {
+        require(!processedNonces[msg.sender][nonce], "Transfer Processed.");
+        processedNonces[msg.sender][nonce] = true;
         token.mint(to, amount);
-        emit Transfer(from, to, amount, block.timestamp, nonce, Step.Mint);
+        emit Transfer(msg.sender, to, amount, block.timestamp, nonce, Step.Mint);
     }
 }

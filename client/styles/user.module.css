@@ -5,11 +5,31 @@
     color:#325f50;
     box-shadow: 2px 2px 2px 1px grey;
     margin-bottom: 1%;
-    size: 50%;
 }
 
-.holdingboxinner {
-    width: 50%
+.marketplace {
+    flex-direction: column;
+    padding : 5%;
+}
+
+.marketplace_inner {
+    display : flex;
+    flex-direction: column;
+    padding : 5%;
+}
+
+.tokendisplay {
+    align-items: center;
+    display: flex;
+    font-family: monospace;
+    color:#325f50;
+    box-shadow: 2px 2px 2px 1px grey;
+    margin-bottom: 1%;
+    padding : 10%;
+}
+
+.fullpage {
+display: flex;
 }
 
 .infobox {

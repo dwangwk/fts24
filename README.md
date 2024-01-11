@@ -9,7 +9,7 @@ EcoBridge is a platform that utilizes smart contracts and custodian wallets to c
 - Firebase / Firestore
 
 ### Demo
-[![Watch the video](https://youtu.be/2apfgZ0JQHA)
+![Watch the video](https://youtu.be/2apfgZ0JQHA)
 
 ### Project Structure
 

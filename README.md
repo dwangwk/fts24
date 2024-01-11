@@ -8,6 +8,9 @@ EcoBridge is a platform that utilizes smart contracts and custodian wallets to c
 - Solidity
 - Firebase / Firestore
 
+### Demo
+[![Watch the video](https://youtu.be/2apfgZ0JQHA)
+
 ### Project Structure
 
 ```bash
@@ -25,6 +28,8 @@ EcoBridge is a platform that utilizes smart contracts and custodian wallets to c
 ```
 
 ### Launch
+
+Note that custodians need to link up their meta-mask wallets as a config.json.
 
 ```bash
 cd client

@@ -25,12 +25,26 @@ const ConvertForm = ({ onTransfer }) => {
           <div className={styles.entrybox}>
               <label htmlFor="token"  className={styles.label}>Token:</label>
                 <Field as="select" type="text" name="token" id="token" className={styles.option}>
-                      <option value="KILMA" className={styles.option}>MCO2</option>
-                      <option value="MCO2" className={styles.option}>KILMA</option>
+                      <option value="GOLD STANDARD" className={styles.option}>GOLD STANDARD</option>
+                      <option value="VERIFIED CARBON STANDARD" className={styles.option}>VERIFIED CARBON STANDARD</option>
+                      <option value="AMERICAN CARBON STANDARD" className={styles.option}>AMERICAN CARBON STANDARD</option>
                 </Field>
               <ErrorMessage name="token" component="div" />
           </div>
-
+          <div className={styles.entrybox}>
+            <label htmlFor="pdf" className={styles.label}>
+              Attach PDF:
+            </label>
+            <input
+              type="file"
+              id="pdf"
+              name="pdf"
+              accept=".pdf"
+              onChange={(event) => setFieldValue('pdf', event.currentTarget.files[0])}
+              className={styles.option}
+            />
+            <ErrorMessage name="pdf" component="div" />
+          </div>
           <div className={styles.entrybox}>
             <label htmlFor="amount"  className={styles.label}>Amount:</label>
             <Field type="number" id="amount" name="amount" className={styles.option}/>

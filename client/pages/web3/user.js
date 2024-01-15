@@ -5,7 +5,9 @@ import styles from "../../styles/user.module.css";
 import UserHoldings from "../../components/UserHoldings";
 import MarketplaceEntry from "../../components/MarketPlaceEntry";
 import { getAuth } from "firebase/auth";
+import MicroFinance from "../../components/MicroFinance";
 import ExecuteForm from '../../components/ExecuteForm';
+
 
 const activeChain = 'ethereum';
 const clientid = require("./keys.json")["client-id"];
@@ -39,6 +41,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                 </div>
+                <MicroFinance></MicroFinance>
             </AppProvider>
         </ThirdwebProvider>
     )

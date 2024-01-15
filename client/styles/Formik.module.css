@@ -25,6 +25,13 @@
     color: #325f50;
 }
 
+.formBorder {
+    border: 2px solid #ccc; /* Adjust border properties as needed */
+    padding: 20px; /* Add padding inside the border */
+    border-radius: 10px; /* Add rounded corners to the border */
+    width: 40%; /* Set a width for the border */
+  }
+
 .label {
     padding-right: 0.5rem;
     color: 	#325f50;

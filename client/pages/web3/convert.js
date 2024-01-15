@@ -13,9 +13,8 @@ const Convert = () => {
               <div className={styles.title}>
                 Convert ECO tokens
               </div>
-              <p className={styles.text}>ECO needed for conversion: 0 (For now)</p>
               <div className={styles.container_lower}>
-                <ConvertForm onTransfer={(data) => convertTokens(data)} />
+                <ConvertForm onTransfer={(data) => {console.log("im here!"); convertTokens(data);}} />
               </div>
             </div>
         </main>

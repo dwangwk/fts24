@@ -4,6 +4,7 @@ import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
 import crypto from "crypto";
 import { BigNumber } from "ethers";
+import { updateTransaction } from "./Transactions";
 
 const abi = [
     "event Transfer(address indexed from, address indexed to, uint256 amount, uint256 date, uint256 nonce, Step indexed step)",
@@ -45,10 +46,15 @@ const BuyTokensCrossChain = async (d) => {
     console.log(rc.events[0]);
     tx = await poly_to_eth.mint(to, amount, {gasLimit: gasFees});
     console.log("mint: ", tx);
-    var rc = await tx.wait();
+    rc = await tx.wait();
     console.log(rc.events[0]);
     const updatestate_ = new ethers.Contract(to, abi2, signer);
     await updatestate_.deposit(token, amount);
+    rc = await tx.wait();
+    const tx_details = {"user" : auth.currentUser.displayName, "rc" : rc};
+    console.log("rc recieved, initiating logging.")
+    updateTransaction(tx_details);
+    console.log(rc);
 }
 
 export default BuyTokensCrossChain

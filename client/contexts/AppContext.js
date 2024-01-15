@@ -11,7 +11,9 @@ const initialState = {
   },
   transferFormData: {
     recipientAddress: '',
+    cert: 'GOLD STANDARD',
     amount: '',
+    token: '',
     src_token: '',
     destchain: "16015286601757825753", // Defaults to Sepolia testnet
   },

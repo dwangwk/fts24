@@ -32,16 +32,15 @@ const BuyTokensNative = async (d) => {
     const signer = new ethers.Wallet(private_key, provider);
     const contract = new ethers.Contract(token, abi, signer);
     const updatestate_ = new ethers.Contract(to, abi2, signer);
-    const tx = await contract.mint(to, amount);
-    //const tx2 = await updatestate_.deposit(token, amount);
-    console.log("tx success: ", tx);
+    //const tx2 = await contract.mint(to, amount);
+    const tx = await updatestate_.deposit(token, amount);
+    //console.log("tx success: ", tx);
     const rc = await tx.wait();
+    //const rc2 = await tx2.wait();
     const tx_details = {"user" : auth.currentUser.displayName, "rc" : rc};
     console.log("rc recieved, initiating logging.")
     updateTransaction(tx_details);
     console.log(rc);
-    //console.log("tx success: ", tx2);
-    //const rc2 = await tx2.wait();
     //console.log(rc2);
 }
 

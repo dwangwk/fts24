@@ -25,6 +25,11 @@ const Navbar = () => {
                     <p className={styles.link}>Global Transactions</p>
                   </Link>
               </li>
+              <li className={styles.entry}>
+                  <Link href="/web3/marketplace" style={{textDecoration: 'none', color : 'white'}}>
+                    <p className={styles.link}>Marketplace</p>
+                  </Link>
+              </li>
         </nav>
   );
 };

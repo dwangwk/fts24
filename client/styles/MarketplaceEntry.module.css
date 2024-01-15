@@ -6,10 +6,12 @@
     margin-bottom: 1%;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-items: center;
-    width:50%;
+    width:100%;
     font-size: x-small;
+    height: 100%;
 }
 
 .textbox {

@@ -2,11 +2,72 @@ import React from 'react';
 import styles from "../styles/MarketplaceEntry.module.css"
 import Image from 'next/image';
 import BuyTokenForm from "./BuyTokenForm";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import PriceChart from './PriceChart';
 
 const MarketplaceEntry = ({data}) => {
+    const [priceData, setPriceData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const token = data.token;
     const desc = data.desc;
     const imageloc = data.img;
+
+    let token_actual_name;
+
+    switch (token) {
+        case 'TCO2':
+            token_actual_name = 'toucan-protocol-base-carbon-tonne';
+            break;
+        case 'MCO2':
+            token_actual_name = 'moss-carbon-credit';
+            break;
+        case 'ECO':
+            token_actual_name = 'toucan-protocol-base-carbon-tonne';
+            break;
+        case 'KILMA':
+            token_actual_name = 'kilma';
+            break;
+        default:
+            token_actual_name = 'toucan-protocol-base-carbon-tonne';
+    }
+
+    useEffect(() => {
+        // Fetch price data from CoinGecko API
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const apiKey = 'CG-c2cUZPHxj1dupLohyK62mUuG'; // Replace 'YOUR_API_KEY' with your actual API key
+                const response = await axios.get(
+                    `https://api.coingecko.com/api/v3/coins/${token_actual_name}/market_chart`,
+                    {
+                        params: {
+                            vs_currency: 'usd',
+                            days: 91,
+                        }
+                    }
+                );
+                setPriceData(response.data["prices"]);
+            } catch (error) {
+                console.error('Error fetching price data:', error);
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [token]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
     return (
         <div className={styles.main}>
             <div>
@@ -15,6 +76,11 @@ const MarketplaceEntry = ({data}) => {
             <div className={styles.textbox}>
                 <h4>{token}</h4>
                 <div className={styles.text}>{desc}</div>
+                {priceData && (
+                    <div>
+                        <PriceChart priceData={priceData} />
+                    </div>
+                )}
             </div>
             <BuyTokenForm token_name={token}></BuyTokenForm>
         </div>

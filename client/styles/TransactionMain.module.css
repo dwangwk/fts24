@@ -1,0 +1,15 @@
+.title {
+    font-family: monospace;
+    color: #325f50;
+}
+
+.transactionbox {
+    padding: 3%;
+    size: 50%;
+    background-color: #c6cbba;
+}
+
+.text {
+    font-family: monospace;
+    color: #325f50;
+}

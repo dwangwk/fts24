@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { auth } from "../db/firebase";
 import { db } from "../db/firebase";
 import { getDoc, doc } from "firebase/firestore";
-import { BigNumber } from "ethers";
+import { updateTransaction } from "./Transactions";
 
 const tokens = new Map();
 tokens.set("KILMA", "0x078a711a6d52CDe57Cbd9dd0ed70f3F960781e12");
@@ -33,13 +33,16 @@ const BuyTokensNative = async (d) => {
     const contract = new ethers.Contract(token, abi, signer);
     const updatestate_ = new ethers.Contract(to, abi2, signer);
     const tx = await contract.mint(to, amount);
-    const tx2 = await updatestate_.deposit(token, amount);
+    //const tx2 = await updatestate_.deposit(token, amount);
     console.log("tx success: ", tx);
     const rc = await tx.wait();
-    console.log(rc.events[0]);
-    console.log("tx success: ", tx2);
-    const rc2 = await tx2.wait();
-    console.log(rc2);
+    const tx_details = {"user" : auth.currentUser.displayName, "rc" : rc};
+    console.log("rc recieved, initiating logging.")
+    updateTransaction(tx_details);
+    console.log(rc);
+    //console.log("tx success: ", tx2);
+    //const rc2 = await tx2.wait();
+    //console.log(rc2);
 }
 
 export default BuyTokensNative

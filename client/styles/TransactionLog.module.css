@@ -1,0 +1,35 @@
+.main {
+    padding: 1%;
+    color: 	#325f50;
+    font-family: monospace;
+    box-shadow: 2px 2px 2px 1px grey;
+    size: 50%;
+    margin-bottom: 3%;
+    background-color: whitesmoke;
+}
+.title {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.title {
+    color: #325f50;
+}
+
+.title:hover{
+    color:#c6cbba;
+    font-weight: bolder;
+}
+
+.text{
+    font-size: smaller;
+}
+
+.time{
+    padding-left: 8%;
+    font-size: smaller;
+}
+
+.infobox {
+    display: flex;
+}

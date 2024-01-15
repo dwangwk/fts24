@@ -16,7 +16,7 @@
 
 .marketplace_inner {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 5%; /* Adjust the gap as needed */
 }
 
@@ -25,7 +25,7 @@
     display: flex;
     font-family: monospace;
     color:#325f50;
-    box-shadow: 2px 2px 2px 1px grey;
+    box-shadow: 4px 4px 4px 2px grey;
     margin-bottom: 1%;
     padding : 10%;
 }

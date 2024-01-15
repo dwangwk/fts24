@@ -8,6 +8,7 @@ import PriceChart from './PriceChart';
 
 const MarketplaceEntry = ({data}) => {
     const [priceData, setPriceData] = useState([]);
+    const [price, setPrice] = useState(0); // [price, setPrice
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const token = data.token;
@@ -27,7 +28,7 @@ const MarketplaceEntry = ({data}) => {
             token_actual_name = 'toucan-protocol-base-carbon-tonne';
             break;
         case 'KILMA':
-            token_actual_name = 'kilma';
+            token_actual_name = 'klima-dao';
             break;
         default:
             token_actual_name = 'toucan-protocol-base-carbon-tonne';
@@ -49,6 +50,7 @@ const MarketplaceEntry = ({data}) => {
                     }
                 );
                 setPriceData(response.data["prices"]);
+                setPrice(response.data["prices"][response.data["prices"].length - 1][1]);
             } catch (error) {
                 console.error('Error fetching price data:', error);
                 setError(error);
@@ -71,7 +73,7 @@ const MarketplaceEntry = ({data}) => {
     return (
         <div className={styles.main}>
             <div>
-                <Image src={imageloc} height={50} width={50} alt={"image of token"}></Image>
+                <Image src={imageloc} height={50} width={50} alt={"image of token"} />
             </div>
             <div className={styles.textbox}>
                 <h4>{token}</h4>
@@ -82,9 +84,18 @@ const MarketplaceEntry = ({data}) => {
                     </div>
                 )}
             </div>
-            <BuyTokenForm token_name={token}></BuyTokenForm>
+            <div className={styles.buyTokenForm}>
+                <BuyTokenForm token_name={token} />
+                <h2> </h2>
+                <div className='main' style={{ marginLeft: '20px' }}>
+                    <div className={styles.text}>Current Price (USD): ${price}</div>
+                    <h2> </h2>
+                    <div className={styles.text}>ECO needed for conversion: 0 (For now)</div>
+                </div>
+            </div>
         </div>
     );
+    
 }
 
 export default MarketplaceEntry;

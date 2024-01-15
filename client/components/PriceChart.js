@@ -31,7 +31,13 @@ const PriceChart = ({ priceData = [] }) => {
     <div>
     {chartData.datasets && chartData.datasets[0].data && (
       <Line  
-      data={chartData} />
+      data={chartData} 
+      width={800} // Set the desired width
+        height={400} // Set the desired height
+        options={{
+        maintainAspectRatio: false, // Set to false to allow custom width and height
+        }}
+      />
     )}
   </div>
   );

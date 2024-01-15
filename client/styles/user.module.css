@@ -10,13 +10,14 @@
 .marketplace {
     flex-direction: column;
     padding-left : 5%;
-    width: 50%;
+    width: 70%;
+    display: flex;
 }
 
 .marketplace_inner {
-    display : flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5%; /* Adjust the gap as needed */
 }
 
 .tokendisplay {

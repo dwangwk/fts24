@@ -32,6 +32,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                 </div>
+                
             </AppProvider>
         </ThirdwebProvider>
     )

@@ -6,6 +6,8 @@ import UserHoldings from "../../components/UserHoldings";
 import MarketplaceEntry from "../../components/MarketPlaceEntry";
 import { getAuth } from "firebase/auth";
 import MicroFinance from "../../components/MicroFinance";
+import ExecuteForm from '../../components/ExecuteForm';
+
 
 const activeChain = 'ethereum';
 const clientid = require("./keys.json")["client-id"];
@@ -25,11 +27,17 @@ const UserProfile = () => {
                         </div>
                         <div className={styles.holdingbox}>
                             <div className={styles.titlebox}>
-                                <h1 className={styles.title}>My Holdings</h1>
+                                <h1 className={styles.title_}>My Holdings</h1>
                             </div>
                             <div>
                                 <UserHoldings></UserHoldings>
                             </div>
+                        </div>
+                    </div>
+                    <div className={styles.executemain}>
+                        <h1 className={styles.title_}>Execute Tokens</h1>
+                        <div className={styles.executebox}>
+                            <ExecuteForm></ExecuteForm>
                         </div>
                     </div>
                 </div>

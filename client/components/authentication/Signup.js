@@ -23,7 +23,7 @@ const Signup = () => {
             setLoading(false);
             const user = cred.user;
             updateProfile(auth.currentUser, {displayName : values.username});
-            nav.push("/web3/user");
+            nav.push("/web3/marketplace");
         }).catch((err) => {
             setError(err.message);
             setLoading(false);

@@ -22,6 +22,10 @@ contract Wallet {
         balance[token] += amount;
     }
 
+    function withdraw_update(address token, uint256 amount) external payable {
+        balance[token] -= amount;
+    }
+
     function transfer(address token, uint256 amount, address to) external owner_only {
         require(amount > balance[token], "You do not have enough to transfer.");
         balance[token] -= amount;

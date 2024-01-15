@@ -5,7 +5,7 @@ import { useAppContext } from '../contexts/AppContext';
 import styles from "../styles/Formik.module.css";
 
 const validationSchema = Yup.object().shape({
-  recipientAddress: Yup.string().required('Recipient address is required'),
+  cert: Yup.string().required('Cert is required'),
   amount: Yup.number().min(0, 'Amount must be greater than 0').required('Amount is required'),
 });
 
@@ -13,23 +13,24 @@ const ConvertForm = ({ onTransfer }) => {
   const { state, dispatch } = useAppContext();
   return (
       <Formik
-        initialValues={state.mintFormData}
+        initialValues={state.transferFormData}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
-          onTransfer({values});
+          console.log("submit convert.");
+          onTransfer(values);
           resetForm();
           dispatch({ type: 'RESET_FORM_DATA' });
         }}
       >
         <Form>
           <div className={styles.entrybox}>
-              <label htmlFor="token"  className={styles.label}>Token:</label>
-                <Field as="select" type="text" name="token" id="token" className={styles.option}>
+              <label htmlFor="cert"  className={styles.label}>Certificate:</label>
+                <Field as="select" type="text" name="cert" id="cert" className={styles.option}>
                       <option value="GOLD STANDARD" className={styles.option}>GOLD STANDARD</option>
                       <option value="VERIFIED CARBON STANDARD" className={styles.option}>VERIFIED CARBON STANDARD</option>
                       <option value="AMERICAN CARBON STANDARD" className={styles.option}>AMERICAN CARBON STANDARD</option>
                 </Field>
-              <ErrorMessage name="token" component="div" />
+              <ErrorMessage name="cert" component="div" />
           </div>
           <div className={styles.entrybox}>
             <label htmlFor="pdf" className={styles.label}>
@@ -40,7 +41,7 @@ const ConvertForm = ({ onTransfer }) => {
               id="pdf"
               name="pdf"
               accept=".pdf"
-              onChange={(event) => setFieldValue('pdf', event.currentTarget.files[0])}
+              onChange={(event) => console.log(event)}
               className={styles.option}
             />
             <ErrorMessage name="pdf" component="div" />
@@ -51,10 +52,10 @@ const ConvertForm = ({ onTransfer }) => {
             <ErrorMessage name="amount" component="div" />
           </div>
           <div className={styles.buttonbox}>
-            <button type="submit" className={styles.button}>Mint Tokens</button>
+            <button type="submit" className={styles.button}>Convert Tokens</button>
           </div>
         </Form>
-      </Formik>
+      </Formik> 
   );
 };
 

@@ -35,7 +35,7 @@ const BuyTokenForm = ({ token_name }) => {
             <Field type="number" id="amount" name="amount" className={styles.option}/>
             <ErrorMessage name="amount" component="div" />
           </div>
-          <div className={styles.buttonboxbuy}>
+          <div className={styles.buttonbox}>
             <button type="submit" className={styles.button}>Buy Tokens</button>
           </div>
         </Form>

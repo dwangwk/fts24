@@ -7,6 +7,10 @@
     margin-bottom: 1%;
 }
 
+.executebox{
+    display: flex;
+}
+
 .marketplace {
     flex-direction: column;
     padding-left : 5%;
@@ -52,6 +56,16 @@ display: flex;
     color:#325f50;
     font-family: monospace;
     padding-right: 10%;
+}
+
+.executemain {
+    margin-left: 10%;
+}
+
+.title_ {
+    color:#325f50;
+    font-family: monospace; 
+    margin-bottom: 5%;
 }
 
 

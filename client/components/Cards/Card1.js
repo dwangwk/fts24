@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../styles/user.module.css";
 import UserHoldings from "../UserHoldings";
+import UserDataButton from "../UserDataButton";
 
 const Card1 = ({ displayName, email }) => {
   return (
@@ -10,6 +11,7 @@ const Card1 = ({ displayName, email }) => {
                 <h1 className={styles.title}>My Profile</h1>
                 <p><b>Username :</b> {displayName}</p>
                 <p><b>Email :</b> {email}</p>
+                <UserDataButton></UserDataButton>
             </div>
             <div className={styles.holdingbox}>
                 <div className={styles.titlebox}>

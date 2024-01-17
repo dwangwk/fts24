@@ -1,6 +1,6 @@
 import { ConnectWallet } from "@thirdweb-dev/react";
 import styles from "../../styles/Forms.module.css";
-import TransferForm from "../../components/TransferForm";
+import TransferForm from "../../components/Forms/TransferForm";
 import { ThirdwebProvider } from '@thirdweb-dev/react';
 import { AppProvider } from '../../contexts/AppContext';
 import Navbar from "../../components/navigation/Navbar";

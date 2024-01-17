@@ -1,0 +1,62 @@
+/* UserProfileNav.module.css */
+
+.nav {
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    min-width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+  }
+  
+  /* Add a local class to make the h2 selector pure */
+  .local-h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .local-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .local_li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #ddd; /* Add a border to create button-like appearance */
+    margin: 10px; /* Add spacing between buttons */
+  }
+  
+  /* Make the li:hover selector pure */
+  .local-li:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .local-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Make the button:hover selector pure */
+  .local-button:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  /* Customize the styles as needed to match your design preferences */
+  

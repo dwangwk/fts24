@@ -4,7 +4,7 @@ import styles from "../../styles/user.module.css";
 import React from 'react';
 import { Card } from 'react-bootstrap'; // Import Card component from your UI library
 import Navbar from "../../components/navigation/Navbar";
-import LoanApplicationForm from "../../components/LoanApplicationForm";
+import LoanApplicationForm from "../../components/Forms/LoanApplicationForm";
 
 const activeChain = 'ethereum';
 const clientid = require("./keys.json")["client-id"];

@@ -1,4 +1,4 @@
-import ConvertForm from '../../components/ConvertForm';
+import ConvertForm from '../../components/Forms/ConvertForm';
 import styles from "../../styles/Forms.module.css";
 import convertTokens from "../../scripts/convertTokens"
 import { AppProvider } from '../../contexts/AppContext';

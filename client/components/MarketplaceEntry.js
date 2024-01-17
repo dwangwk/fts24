@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "../styles/MarketplaceEntry.module.css"
 import Image from 'next/image';
-import BuyTokenForm from "./BuyTokenForm";
+import BuyTokenForm from "./Forms/BuyTokenForm";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import PriceChart from './PriceChart';

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
-import { useAppContext } from '../contexts/AppContext';
-import styles from "../styles/Formik.module.css";
-import { updateTransaction } from '../scripts/Transactions';
-import { auth, db } from '../db/firebase';
+import { useAppContext } from '../../contexts/AppContext';
+import styles from "../../styles/Formik.module.css";
+import { updateTransaction } from '../../scripts/Transactions';
+import { auth, db } from '../../db/firebase';
 import { ethers } from 'ethers';
 import { useState, useEffect } from 'react';
 import { getDoc, doc } from "firebase/firestore";
-import { GetDeductible_EU, GetDeductible_SG } from '../scripts/GetDeductible';
+import { GetDeductible_EU, GetDeductible_SG } from '../../scripts/GetDeductible';
 
 
 const validationSchema = Yup.object().shape({
@@ -37,7 +37,7 @@ const ExecuteForm = () => {
     const to_username = auth.currentUser.email;
     const to_wallet = await getDoc(doc(db, "users", to_username));
     const to = to_wallet.data()["walletAddress"];
-    const private_key = require("../pages/web3/keys.json")["meta-mask"];
+    const private_key = require("../../pages/web3/keys.json")["meta-mask"];
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = new ethers.Wallet(private_key, provider);
     const contract = new ethers.Contract(to, abi, signer);

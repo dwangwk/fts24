@@ -1,8 +1,8 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useAppContext } from '../contexts/AppContext';
-import styles from "../styles/Formik.module.css";
+import { useAppContext } from '../../contexts/AppContext';
+import styles from "../../styles/Formik.module.css";
 
 
 const validationSchema = Yup.object({
@@ -65,7 +65,7 @@ const LoanApplicationForm = ({ onTransfer }) => {
         resetForm();
       }}
     >
-      <Form className={`${styles.form} ${styles.formBorder}`}>
+      <Form>
         <div className={styles.entrybox}>
           <label htmlFor="projectName" className={styles.label}>Project Name *:</label>
           <Field type="text" id="projectName" name="projectName" className={styles.option}/>

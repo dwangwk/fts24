@@ -2,10 +2,10 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useAppContext } from '../contexts/AppContext';
-import styles from "../styles/Formik.module.css";
-import BuyTokensCrossChain from "../scripts/BuyTokensCrossChain";
-import BuyTokensNative from "../scripts/BuyTokensNative";
+import { useAppContext } from '../../contexts/AppContext';
+import styles from "../../styles/Formik.module.css";
+import BuyTokensCrossChain from "../../scripts/BuyTokensCrossChain";
+import BuyTokensNative from "../../scripts/BuyTokensNative";
 
 
 const validationSchema = Yup.object().shape({

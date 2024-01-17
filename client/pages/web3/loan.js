@@ -1,9 +1,10 @@
 import { ThirdwebProvider } from "@thirdweb-dev/react"
 import { AppProvider } from '../../contexts/AppContext';
+import styles from "../../styles/user.module.css";
 import React from 'react';
 import { Card } from 'react-bootstrap'; // Import Card component from your UI library
 import Navbar from "../../components/navigation/Navbar";
-import LoanApplicationForm from "../../components/LoanApplicationForm";
+import LoanApplicationForm from "../../components/Forms/LoanApplicationForm";
 
 const activeChain = 'ethereum';
 const clientid = require("./keys.json")["client-id"];
@@ -13,24 +14,20 @@ const Loan = () => {
     <ThirdwebProvider activeChain={activeChain} clientId={clientid}>
       <AppProvider>
         <Navbar />
-        <Card>
-          <div style={{ maxHeight: '300px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 20px' }}>
+        <div className={styles.fullpage}>
+        <div className={styles.holdingbox}>
+            <div className={styles.box}>
             <Card.Img
-              src="/images/MICROFINANCE.png"
+              src="/images/loan_page.png"
               alt="logo"
               style={{ width: '100%', height: 'auto' }} // Stretch the image to fit the screen
             />
-          </div>
-          <Card.Body>
-            <Card.Title>Microfinance</Card.Title>
-            <Card.Text>
-              Microfinance is a type of banking service that is provided to unemployed or low-income individuals or groups who otherwise would have no other access to financial services.
-            </Card.Text>
-          </Card.Body>
-        </Card>
-
-        {/* Render the LoanApplicationForm component */}
-        <LoanApplicationForm />
+            <h2> Microfinance Loan Form</h2>
+            <LoanApplicationForm />
+            </div>
+        </div>
+        
+        </div>
       </AppProvider>
     </ThirdwebProvider>
   );

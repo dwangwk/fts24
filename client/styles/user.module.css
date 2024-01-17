@@ -48,6 +48,17 @@ display: flex;
     display: flex;
 }
 
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding-bottom: 2%;
+    width: 50%; /* Adjust the width as needed */
+    box-shadow: 2px 2px 2px 1px grey;
+    color:#325f50;
+}
+
 .holdingbox {
     padding: 2%;
 }

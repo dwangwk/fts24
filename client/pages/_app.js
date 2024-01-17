@@ -1,4 +1,4 @@
-
+import '../styles/globals.css'; // Import your global CSS file here
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.

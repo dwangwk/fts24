@@ -3,10 +3,10 @@ import { AppProvider } from '../../contexts/AppContext';
 import Navbar from "../../components/navigation/Navbar";
 import styles from "../../styles/user.module.css";
 import UserHoldings from "../../components/UserHoldings";
-import MarketplaceEntry from "../../components/MarketPlaceEntry";
 import { getAuth } from "firebase/auth";
 import MicroFinance from "../../components/MicroFinance";
 import ExecuteForm from '../../components/ExecuteForm';
+import Card from "../../components/Card";
 
 
 const activeChain = 'ethereum';
@@ -41,7 +41,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                 </div>
-                <MicroFinance></MicroFinance>
+                    <MicroFinance></MicroFinance>
             </AppProvider>
         </ThirdwebProvider>
     )

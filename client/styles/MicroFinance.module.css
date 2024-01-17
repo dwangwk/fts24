@@ -1,0 +1,85 @@
+/* MicroFinance.css */
+
+.custom-main {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.custom-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.custom-text-xl {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.custom-font-semibold {
+  font-weight: bold;
+}
+
+.custom-flex-space-x {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.custom-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.custom-bg-blue-500 {
+  background-color: #007bff;
+}
+
+.custom-text-white {
+  color: #fff;
+}
+
+.custom-hover-bg-blue-600:hover {
+  background-color: #0056b3;
+}
+
+.custom-bg-green-500 {
+  background-color: #28a745;
+}
+
+.custom-hover-bg-green-600:hover {
+  background-color: #1c7430;
+}
+
+.custom-mb-4 {
+  margin-bottom: 1rem;
+}
+
+.custom-text-lg {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.custom-text-gray-600 {
+  color: #666;
+}
+
+.custom-input {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+}
+
+/* Adjust the styles according to your design preferences */

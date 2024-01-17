@@ -50,7 +50,9 @@ const MarketplaceEntry = ({data}) => {
                     }
                 );
                 setPriceData(response.data["prices"]);
-                setPrice(response.data["prices"][response.data["prices"].length - 1][1]);
+                const p = response.data["prices"][response.data["prices"].length - 1][1].toFixed(2);
+                console.log(p);
+                setPrice(p);
             } catch (error) {
                 console.error('Error fetching price data:', error);
                 setError(error);

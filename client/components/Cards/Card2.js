@@ -4,7 +4,7 @@ import ExecuteForm from "../Forms/ExecuteForm";
 
 const Card2 = () => {
   return (
-    <div className={styles.executemain}>
+    <div className={styles.card2main}>
             <h1 className={styles.title_}>Execute Tokens</h1>
             <div className={styles.executebox}>
                 <ExecuteForm></ExecuteForm>

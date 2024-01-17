@@ -10,6 +10,17 @@
     align-items: center;
     color: black;
   }
+
+  .msg {
+    color: 	#325f50;
+    font-family: monospace;
+  }
+
+  .imgbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   /* Add a local class to make the h2 selector pure */
   .local-h2 {
@@ -32,7 +43,11 @@
     background-color: transparent;
     border: 1px solid #ddd; /* Add a border to create button-like appearance */
     margin: 10px; /* Add spacing between buttons */
+    font-size: medium;
+    font-family: monospace;
+    color:#325f50;
   }
+
   
   /* Make the li:hover selector pure */
   .local-li:hover {

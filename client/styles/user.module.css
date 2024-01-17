@@ -59,6 +59,15 @@ display: flex;
     color:#325f50;
 }
 
+.card1main {
+    margin-left: 10%;
+}
+
+.card2main {
+    margin-left: 10%;
+    size : 40%;
+}
+
 .holdingbox {
     padding: 2%;
 }
@@ -70,13 +79,16 @@ display: flex;
 }
 
 .executemain {
+    margin-top: 4%;
     margin-left: 10%;
 }
 
 .title_ {
     color:#325f50;
     font-family: monospace; 
+    font-size: x-large;
     margin-bottom: 5%;
+    margin-top: 5%;
 }
 
 

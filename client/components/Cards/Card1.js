@@ -6,7 +6,7 @@ import UserDataButton from "../UserDataButton";
 const Card1 = ({ displayName, email }) => {
   return (
     <div>
-       <div>
+       <div className={styles.card1main}>
             <div className={styles.infobox}>
                 <h1 className={styles.title}>My Profile</h1>
                 <p><b>Username :</b> {displayName}</p>

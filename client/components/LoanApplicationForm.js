@@ -65,7 +65,7 @@ const LoanApplicationForm = ({ onTransfer }) => {
         resetForm();
       }}
     >
-      <Form className={`${styles.form} ${styles.formBorder}`}>
+      <Form>
         <div className={styles.entrybox}>
           <label htmlFor="projectName" className={styles.label}>Project Name *:</label>
           <Field type="text" id="projectName" name="projectName" className={styles.option}/>

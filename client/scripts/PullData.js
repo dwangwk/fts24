@@ -23,8 +23,9 @@ const PullData = async() => {
     let concat = processed.join("\n");
     doc.setFontSize(10);
     console.log(concat);
+    const ctime = Date().toLocaleString();
     doc.text(concat, 2, 2);
-    doc.save(`${cuser}-transactions.pdf`);
+    doc.save(`${cuser}-transactions-${ctime}.pdf`);
 }
 
 export default PullData

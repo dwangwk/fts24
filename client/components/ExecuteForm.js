@@ -1,12 +1,14 @@
 import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import { useAppContext } from '../contexts/AppContext';
 import styles from "../styles/Formik.module.css";
 import { updateTransaction } from '../scripts/Transactions';
 import { auth, db } from '../db/firebase';
 import { ethers } from 'ethers';
+import { useState, useEffect } from 'react';
 import { getDoc, doc } from "firebase/firestore";
+import { GetDeductible_EU, GetDeductible_SG } from '../scripts/GetDeductible';
 
 
 const validationSchema = Yup.object().shape({
@@ -24,8 +26,12 @@ const abi = [
 
 const ExecuteForm = () => {
   const { state, dispatch } = useAppContext();
+
+  const [currentSaving, setCurrentSaving] = useState(0);
+
   const handle_execute = async(v) => {
     console.log("executing");
+    
     const amount = ethers.utils.parseEther(`${v.amount}`);
     const token = v.token;
     const to_username = auth.currentUser.email;
@@ -43,8 +49,24 @@ const ExecuteForm = () => {
     console.log("rc recieved, initiating logging.")
     updateTransaction(tx_details);
   }
+
+  const handle_change = (event) => {
+    if (event.target.name == "amount") {
+      var updated = event.target.value;
+      try {
+        updated = parseFloat(updated);
+        console.log("float version: ", updated);
+        if (updated >= 0) {
+          const saved = GetDeductible_SG(updated);
+          console.log(saved);
+          setCurrentSaving(Math.round(saved * 100) / 100);
+        }
+      } catch (e) {console.log(e);}
+    }
+  }
   return (
-      <Formik
+    <div>
+       <Formik
         initialValues={state.transferFormData}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
@@ -54,7 +76,8 @@ const ExecuteForm = () => {
           dispatch({ type: 'RESET_FORM_DATA' });
         }}
       >
-        <Form>
+        {({ ...props }) => { return(
+        <Form onChange={handle_change}>
           <div className={styles.entrybox}>
             <label htmlFor="amount"  className={styles.label}>Amount:</label>
             <Field type="number" id="amount" name="amount" className={styles.option}/>
@@ -72,8 +95,12 @@ const ExecuteForm = () => {
           <div className={styles.buttonboxbuy}>
             <button type="submit" className={styles.button}>Execute Token</button>
           </div>
-        </Form>
+        </Form>);}}
       </Formik>
+      <div className={styles.savingbox}>
+        <div className={styles.savinglabel}>Estimated Fines Avoided: {currentSaving} SGD</div>
+      </div>
+    </div>
   );
 };
 

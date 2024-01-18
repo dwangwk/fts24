@@ -20,7 +20,7 @@ const createWallet = async (data) => {
     const assigned_wallet = rc.events[0].args['new_address'];
     console.log("assigned to: ", assigned_wallet);
     const docref = await setDoc(doc(db, "users", under_custody),
-        {walletAddress : assigned_wallet}
+        {walletAddress : assigned_wallet, executed : 0}
     ).catch((err) => {console.log(err);});
     console.log("Created entry in db ", docref);
 }

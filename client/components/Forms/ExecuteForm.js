@@ -29,6 +29,8 @@ const ExecuteForm = () => {
   const { state, dispatch } = useAppContext();
 
   const [currentSaving, setCurrentSaving] = useState(0);
+  const [euSaving, seteuSaving] = useState(0);
+  const [carbonSaving, setcarbonSaving] = useState(0);
 
   const handle_execute = async(v) => {
     console.log("executing");
@@ -60,8 +62,11 @@ const ExecuteForm = () => {
         console.log("float version: ", updated);
         if (updated >= 0) {
           const saved = GetDeductible_SG(updated);
+          const euSaved = GetDeductible_EU(updated)
           console.log(saved);
           setCurrentSaving(Math.round(saved * 100) / 100);
+          seteuSaving(euSaved.toFixed(2));
+          setcarbonSaving(updated.toFixed(2));
         }
       } catch (e) {console.log(e);}
     }
@@ -100,7 +105,9 @@ const ExecuteForm = () => {
         </Form>);}}
       </Formik>
       <div className={styles.savingbox}>
-        <div className={styles.savinglabel}>Estimated Fines Avoided: {currentSaving} SGD</div>
+        <div className={styles.savinglabel}>Singapore Tax Offset: {currentSaving} SGD</div>
+        <div className={styles.savinglabel}>EU Penalty Avoided: {euSaving} €</div>
+        <div className={styles.savinglabel}>CO2 Offset: {carbonSaving} Tonnes</div>
       </div>
     </div>
   );

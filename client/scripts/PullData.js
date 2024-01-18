@@ -2,10 +2,15 @@ import { db, auth } from "../db/firebase";
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { jsPDF } from "jspdf";
 
-const PullData = async() => {
+const PullData = async(tdata) => {
+    const start_duration = tdata.start;
+    const end_duration = tdata.end;
+    console.log("queries_start: ", start_duration);
+    console.log("queries_end: ", end_duration);
     const cuser = auth.currentUser.displayName;
     const tx_data = collection(db, "transactions");
-    const q = query(tx_data, where("party", "==", cuser));
+    const q = query(tx_data, where("party", "==", cuser), where("timestamp", ">=", start_duration),
+    where("timestamp", "<=", end_duration));
     const snapshot = await getDocs(q);
     console.log("snapshot: ", snapshot);
     const ret = [];
@@ -25,7 +30,7 @@ const PullData = async() => {
     console.log(concat);
     const ctime = Date().toLocaleString();
     doc.text(concat, 2, 2);
-    doc.save(`${cuser}-transactions-${ctime}.pdf`);
+    doc.save(`${cuser}-transactions-${start_duration}-to-${end_duration}.pdf`);
 }
 
 export default PullData

@@ -7,6 +7,11 @@
     padding-top: 0.5rem;
 }
 
+.title {
+    color:#315840;
+    font-family: monospace;
+}
+
 .savingbox {
     margin-top:2%;
     padding: 2%;

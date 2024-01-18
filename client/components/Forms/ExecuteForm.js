@@ -9,6 +9,7 @@ import { ethers } from 'ethers';
 import { useState, useEffect } from 'react';
 import { getDoc, doc } from "firebase/firestore";
 import { GetDeductible_EU, GetDeductible_SG } from '../../scripts/GetDeductible';
+import { updateExecutionAmount } from '../../scripts/ExecutionData';
 
 
 const validationSchema = Yup.object().shape({
@@ -31,13 +32,14 @@ const ExecuteForm = () => {
 
   const handle_execute = async(v) => {
     console.log("executing");
-    
+    const temp = v.amount;
     const amount = ethers.utils.parseEther(`${v.amount}`);
     const token = v.token;
     const to_username = auth.currentUser.email;
     const to_wallet = await getDoc(doc(db, "users", to_username));
     const to = to_wallet.data()["walletAddress"];
     const private_key = require("../../pages/web3/keys.json")["meta-mask"];
+    updateExecutionAmount(temp);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = new ethers.Wallet(private_key, provider);
     const contract = new ethers.Contract(to, abi, signer);

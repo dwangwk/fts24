@@ -3,17 +3,18 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useAppContext } from '../../contexts/AppContext';
 import styles from "../../styles/Formik.module.css";
-
+import { auth } from "../../db/firebase";
+import { ethers } from "ethers";
 
 const validationSchema = Yup.object({
   pdf: Yup.mixed().required('PDF file is required'),
   amount: Yup.number().required('Amount is required'),
   projectName: Yup.string().required('Project Name is required'),
   projectDescription: Yup.string().required('Project Description is required'),
-  projectLocation: Yup.string().required('Project Location is required'),
-  projectStartDate: Yup.date().required('Project Start Date is required'),
-  projectEndDate: Yup.date().required('Project End Date is required'),
-  projectType: Yup.string().required('Project Type is required'),
+  projectLocation: Yup.string(),
+  projectStartDate: Yup.date(),
+  projectEndDate: Yup.date(),
+  projectType: Yup.string(),
   emissionsReduction: Yup.string().required('Emission Reduction Estimate Amount is required'),
   projectPartners: Yup.string(),
   environmentalImpact: Yup.string(),
@@ -31,6 +32,7 @@ const validationSchema = Yup.object({
 });
 
 const LoanApplicationForm = ({ onTransfer }) => {
+  
   return (
     <Formik
       initialValues={{
@@ -60,6 +62,8 @@ const LoanApplicationForm = ({ onTransfer }) => {
         contactPhone: '',
       }}
       validationSchema={validationSchema}
+      
+      
       onSubmit={(values, { resetForm }) => {
         onTransfer(values);
         resetForm();

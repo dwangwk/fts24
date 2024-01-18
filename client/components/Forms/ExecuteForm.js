@@ -107,7 +107,7 @@ const ExecuteForm = () => {
       <div className={styles.savingbox}>
         <div className={styles.savinglabel}>Singapore Tax Offset: {currentSaving} SGD</div>
         <div className={styles.savinglabel}>EU Penalty Avoided: {euSaving} €</div>
-        <div className={styles.savinglabel}>Carbon savings: {carbonSaving} Tonnes</div>
+        <div className={styles.savinglabel}>CO2 Offset: {carbonSaving} Tonnes</div>
       </div>
     </div>
   );
